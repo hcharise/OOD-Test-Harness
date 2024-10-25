@@ -9,17 +9,17 @@ using std::vector;
 
 class TestHarness {
     public:
-        TestHarness();
-        TestHarness(vector< vector< void* > > functionParams, vector< void* > functionExpects, int logLevel);
-        void createTestClass();
+        TestHarness(vector<vector<void*>> paramVectors, vector<void*> assertVector, int logLevel);
+        void createTests();
         void runAllTests();
         void printOutResults();
     private:
-        Executor executor;
-        ResultLog resultLog;
-        vector< vector< void* > > functionParams;
-        vector< void* > functionExpects;
+        vector<Executor> testers;
+        vector<ResultLog> testResults;
+        vector<vector<void*>> paramVectors;
+        vector<void*> assertVector;
         int logLevel;
+        int tests;
 };
 
 #endif 
