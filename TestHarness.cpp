@@ -6,7 +6,7 @@ TestHarness::TestHarness() {
 
 void TestHarness::createTestClass() {
 
-}
+}  
 
 void TestHarness::runAllTests() {
 

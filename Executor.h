@@ -1,9 +1,9 @@
-#ifndef TEST_CLASS_H
-#define TEST_CLASS_H
+#ifndef EXECUTOR_H
+#define EXECUTOR_H
 
 #include "ResultLog.h"
 
-class TestClass {
+class Executor {
     public:
         void execute();
         void assess();
