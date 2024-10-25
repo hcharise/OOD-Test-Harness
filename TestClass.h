@@ -2,13 +2,13 @@
 #define TEST_CLASS_H
 
 #include <string>
-
+#include "ResultLog.h"
 
 class TestClass {
     public:
         void execute();
         void assess();
-        void packageResults();
+        ResultLog packageResults();
     private:
 
 };

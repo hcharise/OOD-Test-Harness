@@ -12,6 +12,6 @@ void TestClass::assess() {
 
 }
 
-void TestClass::packageResults() {
+ResultLog TestClass::packageResults() {
 
 }
