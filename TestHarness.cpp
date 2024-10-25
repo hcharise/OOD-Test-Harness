@@ -8,7 +8,7 @@ TestHarness::TestHarness(vector<vector<void*>> paramVectors, vector<void*> asser
     int check = 0;
     for (auto i: paramVectors) tests += 1;
     for (auto i: assertVector) check += 1;
-    if (tests != check) throw std::invalid_argument("Paramitors and asserst vectors are not equal");
+    if (tests != check) throw std::invalid_argument("Paramitors and asserts vectors are not equal");
 }
 
 void TestHarness::createTests() {
