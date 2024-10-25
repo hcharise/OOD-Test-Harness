@@ -6,8 +6,7 @@
 
 class Executor {
     public:
-        Executor();
-        Executor(vector<vector<void*>> functionParams, vector<void*> functionExpects);
+        Executor(vector<void *> functionParams, void *functionAssert);
         void execute();
         void assess();
         ResultLog packageResults();
