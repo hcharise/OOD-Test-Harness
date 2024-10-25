@@ -1,7 +1,7 @@
 #include "TestHarness.h"
 
 TestHarness::TestHarness() {
-
+    
 }
 
 void TestHarness::createTestClass() {
