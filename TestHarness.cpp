@@ -4,7 +4,6 @@ using std::vector;
 
 TestHarness::TestHarness(vector<vector<void*>> paramVectors, vector<void*> assertVector, int logLevel)
     : paramVectors(paramVectors), assertVector(assertVector), logLevel(logLevel) {
-    tests = 0;
     int check = 0;
     for (auto i: paramVectors) tests += 1;
     for (auto i: assertVector) check += 1;

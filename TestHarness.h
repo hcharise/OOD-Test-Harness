@@ -19,7 +19,7 @@ class TestHarness {
         vector<vector<void*>> paramVectors;
         vector<void*> assertVector;
         int logLevel;
-        int tests;
+        int tests = 0;
 };
 
 #endif 
