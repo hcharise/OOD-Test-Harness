@@ -3,7 +3,7 @@ using std::vector;
 
 Executor::Executor() {}
 
-Executor::Executor(vector<vector<void *>> functionParams, vector<void *> functionExpects) {
+Executor::Executor(vector<vector<void*>> functionParams, vector<void*> functionExpects) {
 
 }
 

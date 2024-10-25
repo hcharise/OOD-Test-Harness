@@ -7,7 +7,7 @@
 class Executor {
     public:
         Executor();
-        Executor(vector< vector< void* > > functionParams, vector< void* > functionExpects);
+        Executor(vector<vector<void*>> functionParams, vector<void*> functionExpects);
         void execute();
         void assess();
         ResultLog packageResults();
