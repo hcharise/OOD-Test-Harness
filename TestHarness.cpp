@@ -1,9 +1,11 @@
+#include <vector>
 #include <stdexcept>
+#include "Executor.h"
 #include "TestHarness.h"
 using std::vector;
 
-TestHarness::TestHarness(vector<vector<void*>> paramVectors, vector<void*> assertVector, int logLevel)
-    : paramVectors(paramVectors), assertVector(assertVector), logLevel(logLevel) {
+TestHarness::TestHarness(void* testFunction, vector<vector<void*>> paramVectors, vector<void*> assertVector, int logLevel)
+    : testFunction(testFunction), paramVectors(paramVectors), assertVector(assertVector), logLevel(logLevel) {
     int check = 0;
     for (auto i: paramVectors) tests += 1;
     for (auto i: assertVector) check += 1;
@@ -12,7 +14,7 @@ TestHarness::TestHarness(vector<vector<void*>> paramVectors, vector<void*> asser
 
 void TestHarness::createTests() {
     for(int i = 0; i < tests; i++) {
-        testers.push_back(Executor(paramVectors[i], assertVector[i]));
+        testers.push_back(Executor(testFunction, paramVectors[i], assertVector[i]));
     }  
 }  
 

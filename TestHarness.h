@@ -9,7 +9,7 @@ using std::vector;
 
 class TestHarness {
     public:
-        TestHarness(vector<vector<void*>> paramVectors, vector<void*> assertVector, int logLevel);
+        TestHarness(void* testFunction, vector<vector<void*>> paramVectors, vector<void*> assertVector, int logLevel);
         void createTests();
         void runAllTests();
         void printOutResults();
@@ -18,6 +18,7 @@ class TestHarness {
         vector<ResultLog> testResults;
         vector<vector<void*>> paramVectors;
         vector<void*> assertVector;
+        void* testFunction;
         int logLevel;
         int tests = 0;
 };
