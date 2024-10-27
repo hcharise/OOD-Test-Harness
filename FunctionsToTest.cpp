@@ -15,13 +15,18 @@ int main() {
     int num1 = 10;
     int num2 = 5;
     string name = "Steve";
-    params[0].push_back(&num1);
-    params[0].push_back(&num2);
-    params[0].push_back(&name);
+
+    vector<void*> temp;
+    temp.push_back(&num1);
+    temp.push_back(&num2);
+    temp.push_back(&name);
+    params.push_back(temp);
 
     vector<void*> asserts;
     int output = 10;
     asserts.push_back(&output);
+
+    hello(num1, num2, name);
     TestHarness testHarness = TestHarness((void*)hello, params, asserts, 1);
     return 0;
 }

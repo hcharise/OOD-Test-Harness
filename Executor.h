@@ -7,12 +7,14 @@ using std::vector;
 
 class Executor {
     public:
-        Executor(void* testFunction, vector<void *> functionParams, void *functionAssert);
+        Executor(void* testFunction, vector<void*> functionParams, void* functionAssert);
         void execute();
         void assess();
         ResultLog packageResults();
     private:
-
+        void* testFunction;
+        vector<void*> functionParams;
+        void* functionAssert;
 };
 
 #endif 
