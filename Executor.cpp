@@ -16,7 +16,8 @@ void Executor::execute() {
 }
 
 void Executor::assess() {
-
+    // compare results to asserts
+    // print results to ResultLog
 }
 
 ResultLog Executor::packageResults() {
