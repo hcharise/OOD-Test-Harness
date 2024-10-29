@@ -28,5 +28,7 @@ int main() {
 
     hello(num1, num2, name);
     TestHarness testHarness = TestHarness((void*)hello, params, asserts, 1);
+    testHarness.runAllTests();
+    testHarness.printOutResults();
     return 0;
 }
