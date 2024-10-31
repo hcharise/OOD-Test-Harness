@@ -6,19 +6,38 @@
 
 class iTest {
 public:
-    bool Pos_Num(int n) {
-        return n > 0;
-    }
-
-    // Checks if two numbers are equal
-    bool Equal_Num(int a, int b) {
-        return a == b;
-    }
-
-    // Checks if the input string is non-empty
-    bool Empty_String(const std::string& str) {
-        return !str.empty();
-    }
+	virtual bool test() = 0;
+	virtual ~iTest() {}
 };
 
-#endif // ITEST_H
+class PositiveNumber : public iTest {
+private:
+	int num;
+
+public:
+	Pos_Num(int n) : num(n) {}
+	bool test() override {
+		return num > 0;
+	}
+};
+
+class Empty_String : public iTest {
+private:
+	std::string str;
+public:
+	Empty_String(const std::string& s) : str(s) {}
+	bool test() override {
+		return !str.empty();
+	}
+};
+
+class Equal_Num : public iTest {
+private:
+	int a, b;
+public:
+	Equal_Num(int x, int y) : a(x), b(y) {}
+	bool test() override {
+		return a == b;
+	}
+};
+#endif
