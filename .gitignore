@@ -1,2 +1,6 @@
 .vscode/*
 functionsToTest.exe
+/OOD Test Harness/x64/Debug/OOD Test Harness.tlog
+/OOD Test Harness/x64/Debug
+/OOD Test Harness
+/.vs
