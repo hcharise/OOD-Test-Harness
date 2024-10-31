@@ -8,7 +8,7 @@ Executor::Executor(void* testFunction, vector<void*> functionParams, void* funct
 
 void Executor::execute() {
     try {
-        testFunction();
+        // run test function
     } catch(const std::exception& e) {
         std::cerr << e.what() << '\n';
     }

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "TestHarness.cpp"
+#include "TestHarness.h"
 
 using std::vector;
 using std::string;
