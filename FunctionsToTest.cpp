@@ -22,15 +22,15 @@ int main() {
     auto addLamPass = [x = 1, y = 2, z = 3]() {
         return (add(x, y, z) == 6);
     };
-    
+
     */
 
-    
+
     auto lam_Pos_Num_1 = [a = 3]() {
         PositiveNumber num(a);
         return (num.test());
         };
-    
+
     cout << std::boolalpha;
     cout << "lam_Pos_Num_1 = " << lam_Pos_Num_1() << endl;
 
