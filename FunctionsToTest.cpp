@@ -13,7 +13,7 @@ int main() {
 
     // TESTING FUNCTIONS
     
-    // Positive Number
+    // ------ Positive Number ------
     // Should pass
     auto lam_Pos_Num_Pass = [a = 3]() {
         Positive_Number num(a);
@@ -27,7 +27,7 @@ int main() {
     };
     tests.push_back(lam_Pos_Num_Fail);
 
-    // Empty String
+    // ------ Empty String ------
     // Should pass
     auto lam_Empty_Str_Pass = [s = "happy"]() {
         Empty_String str(s);
@@ -41,7 +41,7 @@ int main() {
     };
     tests.push_back(lam_Empty_Str_Fail);
 
-    // Equal Num
+    // ------ Equal Num ------
     // Should pass
     auto lam_Eq_Num_Pass = [x = 5, y = 5]() {
         Equal_Num nums(x, y);
@@ -54,6 +54,7 @@ int main() {
         return (nums.test());
     };
     tests.push_back(lam_Eq_Num_Fail);
+
 
     // Create and run testHarness using tests declared above
     TestHarness testHarness(tests);

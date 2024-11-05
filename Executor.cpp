@@ -4,15 +4,14 @@
 
 int Executor::totalNumTests = 1;
 
+// Initializes executor test with test number
 Executor::Executor(std::function<bool()> test)
     : test(test), testNum(totalNumTests) {
     totalNumTests++;
 }
 
+// Attempts to run given test, stores result if successful
 void Executor::execute() {
-
-    std::cout << std::boolalpha;
-
     try {
         result = test();
     } catch(const std::exception& e) {
@@ -20,8 +19,10 @@ void Executor::execute() {
     }
 }
 
+// NOT DONE - need to modify to pass result to resultLog once built out
+// Currently just prints out test num and result
 ResultLog Executor::packageResults() {
-    // Need to modify to pass result to resultLog once built out
+    std::cout << std::boolalpha;
     std::cout << "Test #" << testNum << ": " << result << std::endl;
     return ResultLog();
 }
