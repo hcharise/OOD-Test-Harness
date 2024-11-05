@@ -18,29 +18,40 @@ int main() {
     // Vector of lambdas to be passed to TestHarness()
     vector<function<bool()>> functors;
 
-    // Testing functions
-    auto addLamPass = [x = 1, y = 2, z = 3]() {
-        return (add(x, y, z) == 6);
-    };
-
     */
 
+    // Move to test harness later!
+    cout << std::boolalpha;
 
-    auto lam_Pos_Num_1 = [a = 3]() {
-        PositiveNumber num(a);
+    // TESTING FUNCTIONS
+    
+    // Positive Number
+    // Should pass
+    auto lam_Pos_Num_Pass = [a = 3]() {
+        Positive_Number num(a);
         return (num.test());
         };
-
-    cout << std::boolalpha;
-    cout << "lam_Pos_Num_1 = " << lam_Pos_Num_1() << endl;
-
-    auto lam_Pos_Num_2 = [a = -4]() {
-        PositiveNumber num(a);
+    cout << "lam_Pos_Num_Pass = " << lam_Pos_Num_Pass() << endl;
+    // Should fail
+    auto lam_Pos_Num_Fail = [a = -4]() {
+        Positive_Number num(a);
         return (num.test());
         };
+    cout << "lam_Pos_Num_Fail = " << lam_Pos_Num_Fail() << endl;
 
-    cout << std::boolalpha;
-    cout << "lam_Pos_Num_2 = " << lam_Pos_Num_2() << endl;
+    // Empty String
+    // Should pass
+    auto lam_Empty_Str_Pass = [s = "happy"]() {
+        Empty_String str(s);
+        return (str.test());
+        };
+    cout << "lam_Empty_Str_Pass = " << lam_Empty_Str_Pass() << endl;
+    // Should fail
+    auto lam_Empty_Str_Fail = [s = ""]() {
+        Empty_String str(s);
+        return (str.test());
+        };
+    cout << "lam_Empty_Str_Fail = " << lam_Empty_Str_Fail() << endl;
 
 
     /*
