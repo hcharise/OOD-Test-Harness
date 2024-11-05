@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <vector>
 #include <string>
+#include <functional>
 #include "TestHarness.h"
 
 using std::vector;
@@ -14,11 +15,9 @@ void hello(int val1, int val2, string name) {
 }
 
 int main() {
-    /*
-    // Vector of lambdas to be passed to TestHarness()
-    vector<function<bool()>> functors;
 
-    */
+    // Vector of lambdas to be passed to TestHarness()
+    vector<std::function<bool()>> tests;
 
     // Move to test harness later!
     cout << std::boolalpha;
@@ -30,28 +29,28 @@ int main() {
     auto lam_Pos_Num_Pass = [a = 3]() {
         Positive_Number num(a);
         return (num.test());
-        };
-    cout << "lam_Pos_Num_Pass = " << lam_Pos_Num_Pass() << endl;
+    };
+    tests.push_back(lam_Pos_Num_Pass);
     // Should fail
     auto lam_Pos_Num_Fail = [a = -4]() {
         Positive_Number num(a);
         return (num.test());
-        };
-    cout << "lam_Pos_Num_Fail = " << lam_Pos_Num_Fail() << endl;
+    };
+    tests.push_back(lam_Pos_Num_Fail);
 
     // Empty String
     // Should pass
     auto lam_Empty_Str_Pass = [s = "happy"]() {
         Empty_String str(s);
         return (str.test());
-        };
-    cout << "lam_Empty_Str_Pass = " << lam_Empty_Str_Pass() << endl;
+    };
+    tests.push_back(lam_Empty_Str_Pass);
     // Should fail
     auto lam_Empty_Str_Fail = [s = ""]() {
         Empty_String str(s);
         return (str.test());
-        };
-    cout << "lam_Empty_Str_Fail = " << lam_Empty_Str_Fail() << endl;
+    };
+    tests.push_back(lam_Empty_Str_Fail);
 
 
     // Equal Num
@@ -59,14 +58,14 @@ int main() {
     auto lam_Eq_Num_Pass = [x = 5, y = 5]() {
         Equal_Num nums(x, y);
         return (nums.test());
-        };
-    cout << "lam_Eq_Num_Pass = " << lam_Eq_Num_Pass() << endl;
+    };
+    tests.push_back(lam_Eq_Num_Pass);
     // Should fail
     auto lam_Eq_Num_Fail = [x = 5, y = 8]() {
         Equal_Num nums(x, y);
         return (nums.test());
-        };
-    cout << "lam_Eq_Num_Fail = " << lam_Eq_Num_Fail() << endl;
+    };
+    tests.push_back(lam_Eq_Num_Fail);
 
     /*
     vector<vector<void*>> params;
