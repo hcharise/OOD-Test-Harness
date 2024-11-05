@@ -15,7 +15,7 @@ private:
 	int num;
 
 public:
-	Pos_Num(int n) : num(n) {}
+	PositiveNumber(int n) : num(n) {}
 	bool test() override {
 		return num > 0;
 	}
