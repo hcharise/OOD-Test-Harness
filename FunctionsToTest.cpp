@@ -15,8 +15,6 @@ int main() {
     // Vector of lambdas to be passed to TestHarness()
     vector<std::function<bool()>> tests;
 
-    // Move to test harness later!
-    cout << std::boolalpha;
 
     // TESTING FUNCTIONS
     

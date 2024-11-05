@@ -13,6 +13,7 @@ class Executor {
         ResultLog packageResults();
     private:
         std::function<bool()> test;
+        bool result;
         static int testNum;
 };
 

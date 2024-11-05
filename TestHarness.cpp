@@ -13,7 +13,7 @@ void TestHarness::runAllTests() {
     for(auto test : tests) {
         Executor tester(test);
         tester.execute();
-        //testResults.push_back(test.packageResults());
+        tester.packageResults();
     } 
 }
 
