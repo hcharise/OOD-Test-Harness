@@ -12,7 +12,8 @@ class Executor {
     private:
         std::function<bool()> test;
         bool result;
-        static int testNum; // do this next!
+        const int testNum;
+        static int totalNumTests;
 };
 
 #endif 

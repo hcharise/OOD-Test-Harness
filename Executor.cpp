@@ -2,9 +2,12 @@
 #include <iomanip>
 #include "Executor.h"
 
+int Executor::totalNumTests = 1;
+
 Executor::Executor(std::function<bool()> test)
-    : test(test)
-{}
+    : test(test), testNum(totalNumTests) {
+    totalNumTests++;
+}
 
 void Executor::execute() {
 
@@ -19,6 +22,6 @@ void Executor::execute() {
 
 ResultLog Executor::packageResults() {
     // Need to modify to pass result to resultLog once built out
-    std::cout << "Test: " << result << std::endl;
+    std::cout << "Test #" << testNum << ": " << result << std::endl;
     return ResultLog();
 }
