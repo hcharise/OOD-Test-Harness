@@ -8,7 +8,8 @@ Executor::Executor(std::function<bool()> test)
 
 void Executor::execute() {
     try {
-        test();
+        std::cout << "Test: " << test() << std::endl;
+
     } catch(const std::exception& e) {
         std::cerr << e.what() << '\n';
     }

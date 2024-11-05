@@ -67,6 +67,8 @@ int main() {
     };
     tests.push_back(lam_Eq_Num_Fail);
 
+    TestHarness testHarness(tests);
+    testHarness.runAllTests();
     
     return 0;
 }
