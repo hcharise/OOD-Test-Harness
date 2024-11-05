@@ -10,10 +10,6 @@ using std::string;
 using std::cout;
 using std::endl;
 
-void hello(int val1, int val2, string name) {
-    std::cout << "Hello, " << name << std::endl;
-}
-
 int main() {
 
     // Vector of lambdas to be passed to TestHarness()
