@@ -1,10 +1,8 @@
 #ifndef EXECUTOR_H
 #define EXECUTOR_H
 
-#include <vector>
 #include "ResultLog.h"
 #include <functional>
-using std::vector;
 
 class Executor {
     public:
@@ -14,7 +12,7 @@ class Executor {
     private:
         std::function<bool()> test;
         bool result;
-        static int testNum;
+        static int testNum; // do this next!
 };
 
 #endif 

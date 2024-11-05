@@ -4,8 +4,6 @@
 #include <vector>
 #include <functional>
 #include "Executor.h"
-#include "ResultLog.h"
-#include "iTest.h"
 
 using std::vector;
 
@@ -16,7 +14,7 @@ class TestHarness {
         void printOutResults();
     private:
         vector<std::function<bool()>> tests;
-        vector<bool> testResults;
+        vector<ResultLog> testResults;
 };
 
 #endif 

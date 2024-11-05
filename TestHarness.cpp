@@ -18,7 +18,7 @@ void TestHarness::runAllTests() {
 }
 
 void TestHarness::printOutResults() {
-    //for(ResultLog resultLog : testResults) {
+    for(ResultLog resultLog : testResults) {
         
-    //} 
+    } 
 }

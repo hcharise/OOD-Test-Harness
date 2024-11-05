@@ -1,14 +1,9 @@
-#include <iostream>
-#include <iomanip>
 #include <vector>
-#include <string>
 #include <functional>
 #include "TestHarness.h"
+#include "iTest.h"
 
 using std::vector;
-using std::string;
-using std::cout;
-using std::endl;
 
 int main() {
 
@@ -46,7 +41,6 @@ int main() {
     };
     tests.push_back(lam_Empty_Str_Fail);
 
-
     // Equal Num
     // Should pass
     auto lam_Eq_Num_Pass = [x = 5, y = 5]() {
@@ -61,8 +55,10 @@ int main() {
     };
     tests.push_back(lam_Eq_Num_Fail);
 
+    // Create and run testHarness using tests declared above
     TestHarness testHarness(tests);
     testHarness.runAllTests();
+    testHarness.printOutResults();
     
     return 0;
 }

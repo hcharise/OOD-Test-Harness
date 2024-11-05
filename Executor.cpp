@@ -1,7 +1,6 @@
 #include <iostream>
 #include <iomanip>
 #include "Executor.h"
-using std::vector;
 
 Executor::Executor(std::function<bool()> test)
     : test(test)
@@ -19,7 +18,7 @@ void Executor::execute() {
 }
 
 ResultLog Executor::packageResults() {
-    // Can delete once results log is built out
+    // Need to modify to pass result to resultLog once built out
     std::cout << "Test: " << result << std::endl;
     return ResultLog();
 }
