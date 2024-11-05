@@ -2,29 +2,23 @@
 #include "TestHarness.h"
 using std::vector;
 
-TestHarness::TestHarness(void* testFunction, vector<vector<void*>> paramVectors, vector<void*> assertVector, int logLevel)
-    : testFunction(testFunction), paramVectors(paramVectors), assertVector(assertVector), logLevel(logLevel) {
-    int check = 0;
-    for (auto i: paramVectors) tests += 1;
-    for (auto i: assertVector) check += 1;
-    if (tests != check) throw std::invalid_argument("Paramitors and asserts vectors are not equal");
+TestHarness::TestHarness(vector<std::function<bool()>> tests)
+    : tests(tests) {
+    if (tests.empty()) throw std::invalid_argument("No tests passed in.");
+
 }
 
-void TestHarness::createTests() {
-    for(int i = 0; i < tests; i++) {
-        testers.push_back(Executor(testFunction, paramVectors[i], assertVector[i]));
-    }  
-}  
 
 void TestHarness::runAllTests() {
-    for(Executor tester : testers) {
+    for(auto test : tests) {
+        Executor tester(test);
         tester.execute();
-        testResults.push_back(tester.packageResults());
+        //testResults.push_back(test.packageResults());
     } 
 }
 
 void TestHarness::printOutResults() {
-    for(ResultLog resultLog : testResults) {
+    //for(ResultLog resultLog : testResults) {
         
-    } 
+    //} 
 }

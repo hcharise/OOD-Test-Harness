@@ -2,23 +2,18 @@
 #include "Executor.h"
 using std::vector;
 
-Executor::Executor(void* testFunction, vector<void*> functionParams, void* functionAssert) 
-    : testFunction(testFunction), functionParams(functionParams), functionAssert(functionAssert) 
+Executor::Executor(std::function<bool()> test)
+    : test(test)
 {}
 
 void Executor::execute() {
     try {
-        // run test function
+        test();
     } catch(const std::exception& e) {
         std::cerr << e.what() << '\n';
     }
 
     // need to save results of testFunction and call assess?
-}
-
-void Executor::assess() {
-    // compare results to asserts
-    // call ResultLog?
 }
 
 ResultLog Executor::packageResults() {

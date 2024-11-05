@@ -3,18 +3,17 @@
 
 #include <vector>
 #include "ResultLog.h"
+#include <functional>
 using std::vector;
 
 class Executor {
     public:
-        Executor(void* testFunction, vector<void*> functionParams, void* functionAssert);
+        Executor(std::function<bool()>);
         void execute();
-        void assess();
         ResultLog packageResults();
     private:
-        void* testFunction;
-        vector<void*> functionParams;
-        void* functionAssert;
+        std::function<bool()> test;
+        static int testNum;
 };
 
 #endif 
