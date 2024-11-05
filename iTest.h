@@ -10,12 +10,12 @@ public:
 	virtual ~iTest() {}
 };
 
-class PositiveNumber : public iTest {
+class Positive_Number : public iTest {
 private:
 	int num;
 
 public:
-	PositiveNumber(int n) : num(n) {}
+	Positive_Number(int n) : num(n) {}
 	bool test() override {
 		return num > 0;
 	}
