@@ -4,6 +4,7 @@
 #include <vector> 
 #include "Executor.h"
 #include "ResultLog.h"
+#include "iTest.h"
 
 using std::vector;
 
