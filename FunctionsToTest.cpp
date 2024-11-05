@@ -54,6 +54,20 @@ int main() {
     cout << "lam_Empty_Str_Fail = " << lam_Empty_Str_Fail() << endl;
 
 
+    // Equal Num
+    // Should pass
+    auto lam_Eq_Num_Pass = [x = 5, y = 5]() {
+        Equal_Num nums(x, y);
+        return (nums.test());
+        };
+    cout << "lam_Eq_Num_Pass = " << lam_Eq_Num_Pass() << endl;
+    // Should fail
+    auto lam_Eq_Num_Fail = [x = 5, y = 8]() {
+        Equal_Num nums(x, y);
+        return (nums.test());
+        };
+    cout << "lam_Eq_Num_Fail = " << lam_Eq_Num_Fail() << endl;
+
     /*
     vector<vector<void*>> params;
     int num1 = 10;
