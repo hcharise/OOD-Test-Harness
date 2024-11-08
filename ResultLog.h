@@ -1,10 +1,39 @@
 #ifndef RESULT_LOG_H
 #define RESULT_LOG_H
 
-class ResultLog {
-    public:
-        ResultLog();
-};
+#include <string>
+#include <vector>
+#include <ctime>  //For Date Time stamp
 
-#endif 
-//datetimestamp
+enum class LogLevel {
+	PASS_FAIL, // Only logs pass/fail status
+	TEST_SPECIFIC, // Logs specific messages for each test
+	DEBUG // Logs detailed debugging information, including timestamps and variable values
+};
+class ResultLog {
+	public: ResultLog(bool passed,
+		const std::string & message,
+			const std::vector < std::string > & inputs,
+				const std::string & expectedOutput,
+					const std::string & actualOutput,
+						LogLevel logLevel = LogLevel::PASS_FAIL);
+	// Fetch test log data
+	bool didPass() const;
+	std::string getMessage() const;
+	std::vector < std::string > getInputs() const;
+	std::string getExpectedOutput() const;
+	std::string getActualOutput() const; //need to discuss on this
+	std::string getTimestamp() const;
+	// Method to display results based on log level
+	std::string getLogDetails() const;
+	private: bool passed; // Indicates if the test passed
+	std::string message; // Message with specific information or errors
+	std::vector < std::string > inputs; // Input parameters for the test
+	std::string expectedOutput; // Expected output for the test
+	std::string actualOutput; // Actual output from the test
+	std::string timestamp; // Timestamp of the test execution
+	LogLevel logLevel; // Level of detail for logging
+	// Generate the current timestamp
+	std::string generateTimestamp() const;
+};
+#endif
