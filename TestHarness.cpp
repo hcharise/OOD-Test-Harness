@@ -19,10 +19,13 @@ void TestHarness::runAllTests() {
     } 
 }
 
-// NOT DONE - should take results from all exectors and print to output file?
+// Prints header/footer and the result log for each test run
 void TestHarness::printOutResults() {
     int i = 0;
+    std::cout << "------------ TEST RESULTS ------------\n" << std::endl;
     for(ResultLog resultLog : testResults) {
         std::cout << "Test " << i++ << "\t" << resultLog.getLogDetails(LogLevel::TEST_SPECIFIC) << "\n";
     } 
+    std::cout << "------ All tests have been run. ------\n" << std::endl;
+
 }

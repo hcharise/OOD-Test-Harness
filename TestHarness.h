@@ -17,4 +17,4 @@ class TestHarness {
         vector<ResultLog> testResults;
 };
 
-#endif 
+#endif
