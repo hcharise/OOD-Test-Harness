@@ -9,8 +9,10 @@ ResultLog::ResultLog(bool passed, const std::string & message):
 
 std::string ResultLog::generateTimestamp() const {
 	std::time_t now = std::time(nullptr);
+	std::tm localTime;
+	localtime_s(&localTime, &now);
 	std::ostringstream oss;
-	oss << std::put_time(std::localtime( & now), "%Y-%m-%d %H:%M:%S");
+	oss << std::put_time(&localTime, "%Y-%m-%d %H:%M:%S");
 	return oss.str();
 }
 //Test -Pass or Fail
