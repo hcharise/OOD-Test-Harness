@@ -3,6 +3,7 @@
 
 #include "ResultLog.h"
 #include <functional>
+#include <string>
 
 class Executor {
     public:
@@ -12,6 +13,7 @@ class Executor {
     private:
         std::function<bool()> test;
         bool result;
+        std::string errorMessage;
         const int testNum;
         static int totalNumTests;
 };

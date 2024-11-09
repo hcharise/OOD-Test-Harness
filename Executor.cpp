@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <string>
 #include "Executor.h"
 
 int Executor::totalNumTests = 1;
@@ -15,12 +16,11 @@ void Executor::execute() {
     try {
         result = test();
     } catch(const std::exception& e) {
-        std::cerr << e.what() << '\n';
+        errorMessage = e.what();
     }
 }
 
-// NOT DONE - need to modify to pass result to resultLog once built out
-// Currently just prints out test num and result
+// Passes results and exceptions to Result Log
 ResultLog Executor::packageResults() {
-    return ResultLog(result, "Error"); //DO TO:  fill in with error from execute
+    return ResultLog(result, errorMessage);
 }
