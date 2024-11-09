@@ -22,7 +22,5 @@ void Executor::execute() {
 // NOT DONE - need to modify to pass result to resultLog once built out
 // Currently just prints out test num and result
 ResultLog Executor::packageResults() {
-    std::cout << std::boolalpha;
-    std::cout << "Test #" << testNum << ": " << result << std::endl;
     return ResultLog(result, "Error"); //DO TO:  fill in with error from execute
 }

@@ -1,5 +1,7 @@
-#include <stdexcept>
 #include "TestHarness.h"
+#include "ResultLog.h"
+#include <string>
+#include <iostream>
 using std::vector;
 
 // Constructor - checks that vector is non-empty
@@ -13,13 +15,14 @@ void TestHarness::runAllTests() {
     for(auto test : tests) {
         Executor tester(test);
         tester.execute();
-        tester.packageResults(); // Need to push the results into a vector of restResults?
+        testResults.push_back(tester.packageResults());
     } 
 }
 
 // NOT DONE - should take results from all exectors and print to output file?
 void TestHarness::printOutResults() {
+    int i = 0;
     for(ResultLog resultLog : testResults) {
-        
+        std::cout << "Test " << i++ << "\t" << resultLog.getLogDetails(LogLevel::TEST_SPECIFIC) << "\n";
     } 
 }
