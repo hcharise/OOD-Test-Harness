@@ -8,8 +8,9 @@ ResultLog::ResultLog(bool passed,
 			const std::string & expectedOutput,
 				const std::string & actualOutput,
 					LogLevel logLevel): passed(passed), message(message), inputs(inputs), expectedOutput(expectedOutput), actualOutput(actualOutput), logLevel(logLevel) {
-	timestamp = generateTimestamp()
+	timestamp = generateTimestamp();
 }
+
 std::string ResultLog::generateTimestamp() const {
 	std::time_t now = std::time(nullptr);
 	std::ostringstream oss;

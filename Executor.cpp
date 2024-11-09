@@ -24,5 +24,5 @@ void Executor::execute() {
 ResultLog Executor::packageResults() {
     std::cout << std::boolalpha;
     std::cout << "Test #" << testNum << ": " << result << std::endl;
-    return ResultLog();
+    //return ResultLog();
 }
