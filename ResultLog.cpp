@@ -2,12 +2,8 @@
 #include <sstream>
 #include <iomanip>
 
-ResultLog::ResultLog(bool passed,
-	const std::string & message,
-		const std::vector < std::string > & inputs,
-			const std::string & expectedOutput,
-				const std::string & actualOutput,
-					LogLevel logLevel): passed(passed), message(message), inputs(inputs), expectedOutput(expectedOutput), actualOutput(actualOutput), logLevel(logLevel) {
+ResultLog::ResultLog(bool passed, const std::string & message):
+	passed(passed), message(message) {
 	timestamp = generateTimestamp();
 }
 
@@ -42,7 +38,7 @@ std::string ResultLog::getTimestamp() const {
 	return timestamp;
 }
 //Log details based on Log levels
-std::string ResultLog::getLogDetails() const {
+std::string ResultLog::getLogDetails(LogLevel logLevel) const {
 	std::ostringstream logStream;
 	logStream << "Timestamp: " << getTimestamp() << "\n";
 	// Log details based on log level

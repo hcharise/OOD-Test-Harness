@@ -11,12 +11,7 @@ enum class LogLevel {
 	DEBUG // Logs detailed debugging information, including timestamps and variable values
 };
 class ResultLog {
-	public: ResultLog(bool passed,
-		const std::string & message,
-			const std::vector < std::string > & inputs,
-				const std::string & expectedOutput,
-					const std::string & actualOutput,
-						LogLevel logLevel = LogLevel::PASS_FAIL);
+	public: ResultLog(bool passed, const std::string& message);
 	// Fetch test log data
 	bool didPass() const;
 	std::string getMessage() const;
@@ -25,7 +20,7 @@ class ResultLog {
 	std::string getActualOutput() const; //need to discuss on this
 	std::string getTimestamp() const;
 	// Method to display results based on log level
-	std::string getLogDetails() const;
+	std::string getLogDetails(LogLevel logLevel) const;
 	private: bool passed; // Indicates if the test passed
 	std::string message; // Message with specific information or errors
 	std::vector < std::string > inputs; // Input parameters for the test
