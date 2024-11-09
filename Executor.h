@@ -14,8 +14,6 @@ class Executor {
         std::function<bool()> test;
         bool result;
         std::string errorMessage;
-        const int testNum;
-        static int totalNumTests;
 };
 
 #endif 

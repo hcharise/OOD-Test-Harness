@@ -3,12 +3,9 @@
 #include <string>
 #include "Executor.h"
 
-int Executor::totalNumTests = 1;
-
 // Initializes executor test with test number
 Executor::Executor(std::function<bool()> test)
-    : test(test), testNum(totalNumTests) {
-    totalNumTests++;
+    : test(test) {
 }
 
 // Attempts to run given test, stores result if successful
