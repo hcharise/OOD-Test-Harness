@@ -23,18 +23,7 @@ bool ResultLog::didPass() const {
 std::string ResultLog::getMessage() const {
 	return message;
 }
-//Input Params -return
-std::vector < std::string > ResultLog::getInputs() const {
-	return inputs;
-}
-//Expected output - return
-std::string ResultLog::getExpectedOutput() const {
-	return expectedOutput;
-}
-//Actual OUTPUT *****
-std::string ResultLog::getActualOutput() const {
-	return actualOutput;
-}
+
 //Timestamp
 std::string ResultLog::getTimestamp() const {
 	return timestamp;
