@@ -56,6 +56,13 @@ int main() {
     };
     tests.push_back(lam_Eq_Num_Fail);
 
+    // Should error - divide by 0!
+    auto lam_E_Divide_Ten = [a = 0]() {
+        E_Divide_Ten num(a);
+        return (num.test());
+    };
+    tests.push_back(lam_E_Divide_Ten);
+
 
     // Create and run testHarness using tests declared above
     TestHarness testHarness(tests);

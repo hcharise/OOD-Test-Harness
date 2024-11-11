@@ -2,6 +2,7 @@
 #define ITEST_H
 
 #include <string>
+#include <stdexcept>
 #include <iostream>
 
 class iTest {
@@ -65,7 +66,7 @@ class E_Pos_Num : public iTest {
 		}
 };
 
-//Error: Adding cost
+//Error: Adding const
 class E_Neg_Num : public iTest {
 	private:
 		int num;
@@ -98,5 +99,20 @@ class E_Equal_Num : public iTest {
 		bool test() override {
 			return a == b;
 		}
+};
+
+//Error: Dividing by 0
+class E_Divide_Ten : public iTest {
+private:
+	int a;
+public:
+	E_Divide_Ten(int x) : a(x) {}
+	bool test() override {
+		if (a == 0)
+		{
+			throw std::invalid_argument("Cannot divide by 0.");
+		}
+		return (10 / a);
+	}
 };
 #endif
