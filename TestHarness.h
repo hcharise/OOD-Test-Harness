@@ -11,7 +11,7 @@ class TestHarness {
     public:
         TestHarness(vector<std::function<bool()>> tests);
         void runAllTests();
-        void printOutResults();
+        void printOutResults(LogLevel logLevel);
     private:
         vector<std::function<bool()>> tests;
         vector<ResultLog> testResults;

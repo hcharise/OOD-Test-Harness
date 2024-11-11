@@ -1,6 +1,7 @@
 #include <vector>
 #include <functional>
 #include "TestHarness.h"
+#include "ResultLog.h"
 #include "iTest.h"
 
 using std::vector;
@@ -67,7 +68,7 @@ int main() {
     // Create and run testHarness using tests declared above
     TestHarness testHarness(tests);
     testHarness.runAllTests();
-    testHarness.printOutResults();
+    testHarness.printOutResults(LogLevel::TEST_SPECIFIC);
     
     return 0;
 }

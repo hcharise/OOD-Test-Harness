@@ -20,11 +20,11 @@ void TestHarness::runAllTests() {
 }
 
 // Prints header/footer and the result log for each test run
-void TestHarness::printOutResults() {
+void TestHarness::printOutResults(LogLevel logLevel) {
     int i = 1;
     std::cout << "------------ TEST RESULTS ------------\n" << std::endl;
     for(ResultLog resultLog : testResults) {
-        std::cout << "Test " << i++ << "\t" << resultLog.getLogDetails(LogLevel::TEST_SPECIFIC) << "\n";
+        std::cout << "Test " << i++ << ":\t" << resultLog.getLogDetails(logLevel) << "\n";
     } 
     std::cout << "------ All tests have been run. ------\n" << std::endl;
 
