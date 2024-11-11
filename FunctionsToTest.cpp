@@ -16,13 +16,13 @@ int main() {
     // ------ Positive Number ------
     // Should pass
     auto lam_Pos_Num_Pass = [a = 3]() {
-        Positive_Number num(a);
+        Pos_Num num(a);
         return (num.test());
     };
     tests.push_back(lam_Pos_Num_Pass);
     // Should fail
     auto lam_Pos_Num_Fail = [a = -4]() {
-        Positive_Number num(a);
+        Pos_Num num(a);
         return (num.test());
     };
     tests.push_back(lam_Pos_Num_Fail);
@@ -30,13 +30,14 @@ int main() {
     // ------ Empty String ------
     // Should pass
     auto lam_Empty_Str_Pass = [s = "happy"]() {
-        Empty_String str(s);
+        Empty_Str str(s);
         return (str.test());
     };
     tests.push_back(lam_Empty_Str_Pass);
+    
     // Should fail
     auto lam_Empty_Str_Fail = [s = ""]() {
-        Empty_String str(s);
+        Empty_Str str(s);
         return (str.test());
     };
     tests.push_back(lam_Empty_Str_Fail);
