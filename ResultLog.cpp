@@ -40,13 +40,7 @@ std::string ResultLog::getLogDetails(LogLevel logLevel) const {
 		case LogLevel::TEST_SPECIFIC:
 			logStream << "Test Result: " << (didPass() ? "PASS" : "FAIL") << "\n" << "Message: " << getMessage() << "\n";
 			break;
-		case LogLevel::DEBUG:
-			logStream << "Test Result: " << (didPass() ? "PASS" : "FAIL") << "\n" << "Message: " << getMessage() << "\n" << "Inputs: ";
-			for(const auto & input: getInputs()) {
-				logStream << input << " ";
-			}
-			logStream << "\nExpected Output: " << getExpectedOutput() << "\nActual Output: " << getActualOutput() << "\n";
-			break;
+
 	}
 	return logStream.str();
 }
