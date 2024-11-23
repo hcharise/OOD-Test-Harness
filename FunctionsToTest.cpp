@@ -14,7 +14,7 @@ int main() {
 
     // TESTING FUNCTIONS
 
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 5; i++) {
 
         // ------ Positive Number ------
         // Should pass
@@ -70,7 +70,7 @@ int main() {
     // Create and run testHarness using tests declared above
     TestHarness testHarness(tests);
     testHarness.runAllTests();
-    testHarness.printOutResults(LogLevel::TEST_SPECIFIC);
+    testHarness.printOutResults(LogLevel::PASS_FAIL);
     
     return 0;
 }

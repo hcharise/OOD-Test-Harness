@@ -8,7 +8,7 @@
 class Executor {
     public:
         Executor(std::function<bool()>);
-        void execute();
+        void execute(int testIndex);
         ResultLog packageResults();
     private:
         std::function<bool()> test;
