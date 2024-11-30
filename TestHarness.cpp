@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include <thread>
+#include <algorithm>
 using std::vector;
 using std::thread;
 using std::cout;
