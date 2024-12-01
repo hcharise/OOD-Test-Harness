@@ -29,7 +29,7 @@ void TestHarness::runAllTests() {
     int arrayIndex = 0; // each thread has a executor and memory spot assinged to it
     for (Executor executor : executors) {
         // create individual threads
-        workers.push_back(thread([this, arrayIndex]()  {
+        workers.push_back(thread([this, arrayIndex]()  { // push into blocking queue instead
             theadExecute(arrayIndex);
         }));
         arrayIndex += 1;
