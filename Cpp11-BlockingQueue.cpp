@@ -13,7 +13,7 @@
 #include <sstream>
 #include "Cpp11-BlockingQueue.h"
 
-#ifdef TEST_BLOCKINGQUEUE
+#ifndef TEST_BLOCKINGQUEUE
 
 std::mutex ioLock;
 
