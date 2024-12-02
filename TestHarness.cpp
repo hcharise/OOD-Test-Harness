@@ -11,6 +11,17 @@ using std::vector;
 using std::thread;
 using std::cout;
 
+
+class ClientHandler {
+public:
+    void operator()(Sockets::Socket clientSocket) {
+        std::string msg = clientSocket.recvString();  // Receive message from client
+        std::cout << "Server received: " << msg << std::endl;
+        clientSocket.sendString("Hello from Server!");  // Send response to client
+    }
+};
+
+
 // Constructor - checks that vector is non-empty
 TestHarness::TestHarness(vector<std::function<bool()>> tests) {
     if (tests.empty()) throw std::invalid_argument("No tests passed in.");
@@ -19,14 +30,28 @@ TestHarness::TestHarness(vector<std::function<bool()>> tests) {
         Executor executor(test);
         executors.push_back(executor);
     }
+
+    ///
+    Sockets::SocketSystem socketSystem;
+
+    // Set up the server
+    int port = 8080;
+    Sockets::SocketListener listener(port, Sockets::Socket::IP4);
+    ClientHandler handler;
+    listener.start(handler);  // Start the server listening for connections
+
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
+    std::cout << "Server is listening on port " << port << "...\n";
+
+    ///
     
 }
+
 // Creates and runs executor for each lambda in tests vector
 void TestHarness::runAllTests() {
     ThreadPool<3> trpl;
     int testNum = 0;
-
-    // set up socket? SocketSystem socketSystem;
 
     for (auto executor : executors) {
         testNum++;
@@ -62,3 +87,4 @@ void TestHarness::printOutResults(LogLevel logLevel) {
     std::cout << "------ All results have been printed. ------\n" << std::endl;
 
 }
+

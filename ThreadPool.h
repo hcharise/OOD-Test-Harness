@@ -35,6 +35,7 @@
 #include <memory>
 #include "Cpp11-BlockingQueue.h"
 #include "Logger.h"
+#include "Sockets.h"
 #include "Utilities.h"
 
 
@@ -89,6 +90,36 @@ ThreadPool<numThreads>::ThreadPool()
     for (size_t i = 0; i < numThreads; ++i)
     {
         std::thread t(threadProc_);
+
+        ///
+      
+        ///
+        size_t port = 8080;
+
+        Sockets::SocketSystem ss;  // Initialize socket system
+
+        // Set up the client to connect to the server
+        Sockets::SocketConnecter client;
+        while (!client.connect("localhost", 8080))
+        {
+            std::cerr << "Thread " + Utilities::Converter<std::thread::id>::toString(t.get_id()) << " client waiting to connect\n";
+            ::Sleep(100);
+        }
+        if (client.connect("localhost", port)) {
+            std::string msg = "Hello from Client!";
+            client.sendString(msg);  // Send message to the server
+            std::string response = client.recvString();  // Receive the server's response
+            std::cout << "Client received: " << response << std::endl;
+        }
+        else {
+            std::cerr << "Thread " + Utilities::Converter<std::thread::id>::toString(t.get_id()) << " failed to connect to the server!" << std::endl;
+        }
+
+        // Give the server time to process before the main thread finishes
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+
+        ///
+
         /*std::stringstream msg;
         msg << "\tstarting threadpool thread " + Utilities::Converter<std::thread::id>::toString(t.get_id()) << "\n";
         std::cout << msg.str();*/
