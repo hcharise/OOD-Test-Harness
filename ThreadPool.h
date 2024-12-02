@@ -78,9 +78,6 @@ ThreadPool<numThreads>::ThreadPool()
                     Q_.enQ(co);
                     break;
                 }
-                else {
-                    // send message to test harness saying we are ready for another test
-                }
             }
             /*std::stringstream msg;
             msg << "\tthread " << Utilities::Converter<std::thread::id>::toString(std::this_thread::get_id()) << " terminating\n";
@@ -100,11 +97,10 @@ ThreadPool<numThreads>::ThreadPool()
 
         // Set up the client to connect to the server
         Sockets::SocketConnecter client;
-        int loop = 0;
-        while (!client.connect("localhost", port) && loop < 2)
+        int loop = 1;
+        while (!client.connect("localhost", port) && loop < 1)
         {
             std::cerr << "Thread " + Utilities::Converter<std::thread::id>::toString(t.get_id()) << " client waiting to connect\n";
-            ::Sleep(10);
             loop++;
         }
         if (client.connect("localhost", port)) {
@@ -163,3 +159,92 @@ ThreadPool<numThreads>::~ThreadPool()
             thrd.join();
     }
 }
+
+
+/*
+
+#ifndef COMM_CHANNEL_H
+#define COMM_CHANNEL_H
+
+#include <boost/asio.hpp>
+#include <string>
+#include <thread>
+#include <queue>
+#include <mutex>
+#include <condition_variable>
+
+class CommChannel {
+public:
+    CommChannel(int port);
+    ~CommChannel();
+
+    void startServer();
+    void sendMessage(const std::string& message);
+    std::string receiveMessage();
+
+private:
+    boost::asio::io_context io_context;
+    boost::asio::ip::tcp::acceptor acceptor;
+    boost::asio::ip::tcp::socket socket;
+    std::queue<std::string> messageQueue;
+    std::mutex queueMutex;
+    std::condition_variable condition;
+
+    void handleClient();
+};
+
+#endif
+
+//commchannel.cpp
+#include "CommChannel.h"
+#include <iostream>
+
+CommChannel::CommChannel(int port)
+    : acceptor(io_context, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), port)),
+      socket(io_context) {}
+
+CommChannel::~CommChannel() {
+    io_context.stop();
+}
+
+void CommChannel::startServer() {
+    std::thread([this]() { io_context.run(); }).detach();
+    acceptor.async_accept(socket, [this](boost::system::error_code ec) {
+        if (!ec) {
+            handleClient();
+        }
+    });
+}
+
+void CommChannel::sendMessage(const std::string& message) {
+    boost::asio::write(socket, boost::asio::buffer(message + "\n"));
+}
+
+std::string CommChannel::receiveMessage() {
+    std::unique_lock<std::mutex> lock(queueMutex);
+    condition.wait(lock, [this]() { return !messageQueue.empty(); });
+
+    std::string message = messageQueue.front();
+    messageQueue.pop();
+    return message;
+}
+
+void CommChannel::handleClient() {
+    std::array<char, 1024> buffer;
+    boost::system::error_code ec;
+
+    while (true) {
+        size_t length = socket.read_some(boost::asio::buffer(buffer), ec);
+        if (ec) break;
+
+        std::string message(buffer.data(), length);
+        {
+            std::lock_guard<std::mutex> lock(queueMutex);
+            messageQueue.push(message);
+        }
+        condition.notify_one();
+    }
+}
+
+
+*/
