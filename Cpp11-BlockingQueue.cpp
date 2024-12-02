@@ -14,6 +14,7 @@
 #include "Cpp11-BlockingQueue.h"
 
 #ifndef TEST_BLOCKINGQUEUE
+#define TEST_BLOCKINGQUEUE
 
 std::mutex ioLock;
 
@@ -31,6 +32,7 @@ void test(BlockingQueue<std::string>* pQ)
     } while (msg != "quit");
 }
 
+/*
 int main()
 {
     std::cout << "\n  Demonstrating C++11 Blocking Queue";
@@ -84,5 +86,6 @@ int main()
 
     std::cout << "\n\n";
 }
+*/
 
 #endif
