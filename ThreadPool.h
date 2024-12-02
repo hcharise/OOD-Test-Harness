@@ -77,18 +77,21 @@ ThreadPool<numThreads>::ThreadPool()
                     Q_.enQ(co);
                     break;
                 }
+                else {
+                    // send message to test harness saying we are ready for another test
+                }
             }
-            std::stringstream msg;
+            /*std::stringstream msg;
             msg << "\tthread " << Utilities::Converter<std::thread::id>::toString(std::this_thread::get_id()) << " terminating\n";
-            std::cout << msg.str();
+            std::cout << msg.str()*/;
 
         };
     for (size_t i = 0; i < numThreads; ++i)
     {
         std::thread t(threadProc_);
-        std::stringstream msg;
+        /*std::stringstream msg;
         msg << "\tstarting threadpool thread " + Utilities::Converter<std::thread::id>::toString(t.get_id()) << "\n";
-        std::cout << msg.str();
+        std::cout << msg.str();*/
 
         threads_.push_back(std::move(t));
     }
@@ -98,23 +101,23 @@ template <size_t numThreads>
 void ThreadPool<numThreads>::workItem(CallObj& co)
 {
     Q_.enQ(co);
-    std::stringstream msg;
+   /* std::stringstream msg;
     msg << "\tthreadpool queue size = " << Utilities::Converter<size_t>::toString(Q_.size()) << "\n";
-    std::cout << msg.str();
+    std::cout << msg.str();*/
 }
 
 template <size_t numThreads>
 void ThreadPool<numThreads>::wait()
 {
-    std::stringstream msg;
+    /*std::stringstream msg;
     msg << "\tentering wait with queue size = " << Utilities::Converter<size_t>::toString(Q_.size()) << "\n";
-    std::cout << msg.str();
+    std::cout << msg.str();*/
 
     for (auto& thrd : threads_)
         thrd.join();
     Q_.clear();
-    msg << "\tleaving wait with queue size = " << Utilities::Converter<size_t>::toString(Q_.size()) << "\n";
-    std::cout << msg.str();
+    /* msg << "\tleaving wait with queue size = " << Utilities::Converter<size_t>::toString(Q_.size()) << "\n";
+    std::cout << msg.str();*/
 
 }
 

@@ -14,7 +14,7 @@ class TestHarness {
         TestHarness(vector<std::function<bool()>> tests);
         void runAllTests();
         void printOutResults(LogLevel logLevel);
-        void theadExecute(int i);
+       //  void theadExecute(int i);
     private:
         vector<thread> threads;
         vector<Executor> executors;

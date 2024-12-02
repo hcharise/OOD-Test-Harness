@@ -5,6 +5,7 @@
 #include <thread>
 #include <algorithm>
 #include "ThreadPool.h"
+#include "Sockets.h"
 
 using std::vector;
 using std::thread;
@@ -14,22 +15,29 @@ using std::cout;
 TestHarness::TestHarness(vector<std::function<bool()>> tests) {
     if (tests.empty()) throw std::invalid_argument("No tests passed in.");
 
+    for (auto test : tests) {
+        Executor executor(test);
+        executors.push_back(executor);
+    }
+    
+}
+// Creates and runs executor for each lambda in tests vector
+void TestHarness::runAllTests() {
     ThreadPool<3> trpl;
     int testNum = 0;
 
-    for (auto test : tests) {
-        testNum++;
+    // set up socket? SocketSystem socketSystem;
 
-        Executor executor(test);
-        executors.push_back(executor);
+    for (auto executor : executors) {
+        testNum++;
 
         ThreadPool<3>::CallObj co = [&trpl, &executor, testNum]() ->bool {
             std::stringstream msg;
-            msg << "--------------------  Thread " << Utilities::Converter<std::thread::id>::toString(std::this_thread::get_id()) << " : \n";
+            msg << "Thread " << Utilities::Converter<std::thread::id>::toString(std::this_thread::get_id()) << " running test " << testNum << "\n";
             std::cout << msg.str();
 
             executor.execute(testNum);
-            
+
             return true;
         };
         trpl.workItem(co);
@@ -38,33 +46,7 @@ TestHarness::TestHarness(vector<std::function<bool()>> tests) {
     ThreadPool<3>::CallObj exit = []() ->bool { return false; };
     trpl.workItem(exit);
     trpl.wait();
-    
-    testResults.push_back(ResultLog(false, "NuLL")); // create empty space for thread to reach
-
 }
-
-//void TestHarness::theadExecute(int arrayIndex) {
-//    executors[arrayIndex].execute(arrayIndex);
-//    testResults[arrayIndex] = (executors[arrayIndex].packageResults());
-//}
-
-// Creates and runs executor for each lambda in tests vector
-//void TestHarness::runAllTests() {
-//    vector<thread> workers;
-//    int arrayIndex = 0; // each thread has a executor and memory spot assinged to it
-//    for (Executor executor : executors) {
-//        // create individual threads
-//        workers.push_back(thread([this, arrayIndex]()  { // push into blocking queue instead
-//            theadExecute(arrayIndex);
-//        }));
-//        arrayIndex += 1;
-//    }
-//
-//    // join all threads together
-//    std::for_each(workers.begin(), workers.end(), [](std::thread &t) {
-//        t.join();
-//    });
-//}
 
 // Prints header/footer and the result log for each test run
 void TestHarness::printOutResults(LogLevel logLevel) {
@@ -77,6 +59,6 @@ void TestHarness::printOutResults(LogLevel logLevel) {
     for(ResultLog resultLog : testResults) {
         cout << "Test " << i++ << ":\t" << resultLog.getLogDetails(logLevel) << "\n";
     } 
-    std::cout << "------ All tests have been run. ------\n" << std::endl;
+    std::cout << "------ All results have been printed. ------\n" << std::endl;
 
 }

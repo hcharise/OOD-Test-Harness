@@ -15,17 +15,17 @@ Executor::Executor(std::function<bool()> test)
 // Attempts to run given test, stores result if successful
 void Executor::execute(int testIndex) {
 
-    std::stringstream msg;
+   /* std::stringstream msg;
     msg << "Test " << testIndex << " has started.\n";
-    std::cout << msg.str();
+    std::cout << msg.str();*/
 
     try {
         result = test();
     } catch(const std::exception& e) {
         errorMessage = e.what();
     }
-    msg << "Test " << testIndex << " has ended.\n";
-    std::cout << msg.str();
+    /*msg << "Test " << testIndex << " has ended.\n";
+    std::cout << msg.str();*/
 
 }
 

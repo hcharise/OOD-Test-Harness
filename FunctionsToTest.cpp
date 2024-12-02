@@ -69,7 +69,7 @@ int main() {
 
     // Create and run testHarness using tests declared above
     TestHarness testHarness(tests);
-    // testHarness.runAllTests();
+    testHarness.runAllTests();
     testHarness.printOutResults(LogLevel::PASS_FAIL);
     
     return 0;
