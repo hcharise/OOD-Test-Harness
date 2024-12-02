@@ -100,10 +100,12 @@ ThreadPool<numThreads>::ThreadPool()
 
         // Set up the client to connect to the server
         Sockets::SocketConnecter client;
-        while (!client.connect("localhost", 8080))
+        int loop = 0;
+        while (!client.connect("localhost", port) && loop < 2)
         {
             std::cerr << "Thread " + Utilities::Converter<std::thread::id>::toString(t.get_id()) << " client waiting to connect\n";
-            ::Sleep(100);
+            ::Sleep(10);
+            loop++;
         }
         if (client.connect("localhost", port)) {
             std::string msg = "Hello from Client!";
