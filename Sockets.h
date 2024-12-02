@@ -298,3 +298,49 @@ namespace Sockets
     }
 }
 #endif
+
+//////////////////////////////////////////////////////////////////////////
+//Using Comm prototype**
+
+#ifndef SOCKETS_H
+#define SOCKETS_H
+
+#include <string>
+#include <thread>
+#include <queue>
+#include <mutex>
+#include <condition_variable>
+
+class Comm {
+public:
+    Comm(const std::string& address, int port);
+    ~Comm();
+
+    // Starts the communication channel
+    void start();
+
+    // Stops the communication channel
+    void stop();
+
+    // Sends a message to the remote endpoint
+    void sendMessage(const std::string& msg);
+
+    // Retrieves a message from the incoming message queue
+    std::string receiveMessage();
+
+private:
+    void listener();
+
+    std::string address_;
+    int port_;
+    int serverSocket_;
+    bool running_;
+
+    std::queue<std::string> incomingMessages_;
+    std::mutex queueMutex_;
+    std::condition_variable queueCondVar_;
+    std::thread listenerThread_;
+};
+
+#endif
+
