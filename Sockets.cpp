@@ -840,3 +840,109 @@ int main(int argc, char* argv[])
 }
 
 #endif
+
+
+////////////////////////////////////////////////////
+//Using Comm prototype**
+
+#include "Sockets.h"
+#include <iostream>
+#include <cstring>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <unistd.h>
+
+Comm::Comm(const std::string& address, int port)
+    : address_(address), port_(port), running_(false), serverSocket_(-1) {}
+
+Comm::~Comm() {
+    stop();
+}
+
+void Comm::start() {
+    running_ = true;
+    serverSocket_ = socket(AF_INET, SOCK_STREAM, 0);
+    if (serverSocket_ < 0) {
+        throw std::runtime_error("Socket creation failed");
+    }
+
+    sockaddr_in serverAddr{};
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_addr.s_addr = INADDR_ANY;
+    serverAddr.sin_port = htons(port_);
+
+    if (bind(serverSocket_, (struct sockaddr*)&serverAddr, sizeof(serverAddr)) < 0) {
+        throw std::runtime_error("Socket binding failed");
+    }
+
+    if (listen(serverSocket_, 5) < 0) {
+        throw std::runtime_error("Socket listen failed");
+    }
+
+    listenerThread_ = std::thread(&Comm::listener, this);
+}
+
+void Comm::stop() {
+    if (running_) {
+        running_ = false;
+        close(serverSocket_);
+        if (listenerThread_.joinable()) {
+            listenerThread_.join();
+        }
+    }
+}
+
+void Comm::sendMessage(const std::string& msg) {
+    int clientSocket = socket(AF_INET, SOCK_STREAM, 0);
+    if (clientSocket < 0) {
+        throw std::runtime_error("Socket creation failed");
+    }
+
+    sockaddr_in clientAddr{};
+    clientAddr.sin_family = AF_INET;
+    clientAddr.sin_port = htons(port_);
+    clientAddr.sin_addr.s_addr = inet_addr(address_.c_str());
+
+    if (connect(clientSocket, (struct sockaddr*)&clientAddr, sizeof(clientAddr)) < 0) {
+        close(clientSocket);
+        throw std::runtime_error("Socket connection failed");
+    }
+
+    send(clientSocket, msg.c_str(), msg.length(), 0);
+    close(clientSocket);
+}
+
+std::string Comm::receiveMessage() {
+    std::unique_lock<std::mutex> lock(queueMutex_);
+    queueCondVar_.wait(lock, [this]() { return !incomingMessages_.empty(); });
+
+    std::string msg = incomingMessages_.front();
+    incomingMessages_.pop();
+    return msg;
+}
+
+void Comm::listener() {
+    while (running_) {
+        sockaddr_in clientAddr{};
+        socklen_t clientLen = sizeof(clientAddr);
+        int clientSocket = accept(serverSocket_, (struct sockaddr*)&clientAddr, &clientLen);
+
+        if (clientSocket < 0) {
+            if (running_) {
+                std::cerr << "Socket accept failed" << std::endl;
+            }
+            continue;
+        }
+
+        char buffer[1024] = {0};
+        int bytesRead = read(clientSocket, buffer, sizeof(buffer));
+        if (bytesRead > 0) {
+            std::lock_guard<std::mutex> lock(queueMutex_);
+            incomingMessages_.push(std::string(buffer, bytesRead));
+            queueCondVar_.notify_one();
+        }
+
+        close(clientSocket);
+    }
+}
+
