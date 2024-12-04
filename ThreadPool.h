@@ -88,9 +88,7 @@ ThreadPool<numThreads>::ThreadPool()
     {
         std::thread t(threadProc_);
 
-        ///
-      
-        ///
+        /*
         size_t port = 8080;
 
         Sockets::SocketSystem ss;  // Initialize socket system
@@ -116,7 +114,7 @@ ThreadPool<numThreads>::ThreadPool()
         // Give the server time to process before the main thread finishes
         std::this_thread::sleep_for(std::chrono::seconds(1));
 
-        ///
+        */
 
         /*std::stringstream msg;
         msg << "\tstarting threadpool thread " + Utilities::Converter<std::thread::id>::toString(t.get_id()) << "\n";

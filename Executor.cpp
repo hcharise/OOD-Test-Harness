@@ -15,18 +15,16 @@ Executor::Executor(std::function<bool()> test)
 // Attempts to run given test, stores result if successful
 void Executor::execute(int testIndex) {
 
-   /* std::stringstream msg;
-    msg << "Test " << testIndex << " has started.\n";
-    std::cout << msg.str();*/
+    std::stringstream msg;
 
     try {
-        result = test();
-        std::cout << "TEST # " << testIndex << ": RESULT = " << result << std::endl;
-
+        result = this->test();
+        msg << "TEST # " << testIndex << ": RESULT = " << result << std::endl;
+        std::cout << msg.str();
     } catch(const std::exception& e) {
         errorMessage = e.what();
-        std::cout << "TEST # " << testIndex << ": Failed" << std::endl;
-
+        msg << "TEST # " << testIndex << ": Failed" << std::endl;
+        std::cout << msg.str();
     }
     /*msg << "Test " << testIndex << " has ended.\n";
     std::cout << msg.str();*/
@@ -35,5 +33,9 @@ void Executor::execute(int testIndex) {
 
 // Passes results and exceptions to Result Log
 ResultLog Executor::packageResults() {
+    std::stringstream msg;
+
+    msg << "Result: " << result << "   |||   Error Message: " << errorMessage << ".\n";
+    std::cout << msg.str();
     return ResultLog(result, errorMessage);
 }

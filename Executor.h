@@ -10,9 +10,9 @@ class Executor {
         Executor(std::function<bool()>);
         void execute(int testIndex);
         ResultLog packageResults();
+        bool result;
     private:
         std::function<bool()> test;
-        bool result;
         std::string errorMessage;
 };
 

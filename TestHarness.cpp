@@ -11,7 +11,7 @@ using std::vector;
 using std::thread;
 using std::cout;
 
-
+/*
 class ClientHandler {
 public:
     void operator()(Sockets::Socket clientSocket) {
@@ -20,6 +20,7 @@ public:
         clientSocket.sendString("Hello from Server!");  // Send response to client
     }
 };
+*/
 
 
 // Constructor - checks that vector is non-empty
@@ -31,7 +32,7 @@ TestHarness::TestHarness(vector<std::function<bool()>> tests) {
         executors.push_back(executor);
     }
 
-    ///
+    /*
     Sockets::SocketSystem socketSystem;
 
     // Set up the server
@@ -43,8 +44,7 @@ TestHarness::TestHarness(vector<std::function<bool()>> tests) {
     std::this_thread::sleep_for(std::chrono::seconds(1));
 
     std::cout << "Server is listening on port " << port << "...\n";
-
-    ///
+    */
     
 }
 
@@ -56,12 +56,15 @@ void TestHarness::runAllTests() {
     for (auto executor : executors) {
         testNum++;
 
-        ThreadPool<3>::CallObj co = [&trpl, &executor, testNum]() ->bool {
+        ThreadPool<3>::CallObj co = [&trpl, executor, testNum]() mutable ->bool {
             std::stringstream msg;
             msg << "Thread " << Utilities::Converter<std::thread::id>::toString(std::this_thread::get_id()) << " running test " << testNum << "\n";
             std::cout << msg.str();
 
             executor.execute(testNum);
+            // result is set correctly here
+
+            executor.packageResults();
 
             return true;
         };
