@@ -19,12 +19,9 @@ void Executor::execute(int testIndex) {
 
     try {
         result = this->test();
-        msg << "TEST # " << testIndex << ": RESULT = " << result << std::endl;
-        std::cout << msg.str();
     } catch(const std::exception& e) {
         errorMessage = e.what();
-        msg << "TEST # " << testIndex << ": Failed" << std::endl;
-        std::cout << msg.str();
+        result = 0;
     }
     /*msg << "Test " << testIndex << " has ended.\n";
     std::cout << msg.str();*/

@@ -74,12 +74,19 @@ void TestHarness::runAllTests() {
     ThreadPool<3>::CallObj exit = []() ->bool { return false; };
     trpl.workItem(exit);
     trpl.wait();
+
+    std::stringstream msg;
+    msg << "Thread pool complete!\n";
+    std::cout << msg.str();
 }
 
 // Prints header/footer and the result log for each test run
 void TestHarness::printOutResults(LogLevel logLevel) {
 
     for (Executor executor : executors) {
+        std::stringstream msg;
+        msg << "HERE result = " << executor.result << "\n";
+        std::cout << msg.str(); 
         testResults.push_back(executor.packageResults());
     }
     int i = 1;
