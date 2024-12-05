@@ -11,6 +11,8 @@ using std::vector;
 using std::thread;
 using std::cout;
 
+std::vector<bool> results;
+
 /*
 class ClientHandler {
 public:
@@ -64,7 +66,7 @@ void TestHarness::runAllTests() {
             executor.execute(testNum);
             // result is set correctly here
 
-            executor.packageResults();
+           // executor.packageResults();
 
             return true;
         };
@@ -75,6 +77,13 @@ void TestHarness::runAllTests() {
     trpl.workItem(exit);
     trpl.wait();
 
+    cout << "HERE'S THE NEW STUFF" << std::endl;
+    for (auto result : results) {
+        cout << result << "\n" << std::endl;
+    }
+    cout << "END OF THE NEW STUFF" << std::endl;
+
+
     std::stringstream msg;
     msg << "Thread pool complete!\n";
     std::cout << msg.str();
@@ -83,7 +92,7 @@ void TestHarness::runAllTests() {
 // Prints header/footer and the result log for each test run
 void TestHarness::printOutResults(LogLevel logLevel) {
 
-    for (Executor executor : executors) {
+    /*for (Executor executor : executors) {
         std::stringstream msg;
         msg << "HERE result = " << executor.result << "\n";
         std::cout << msg.str(); 
@@ -95,6 +104,6 @@ void TestHarness::printOutResults(LogLevel logLevel) {
         cout << "Test " << i++ << ":\t" << resultLog.getLogDetails(logLevel) << "\n";
     } 
     std::cout << "------ All results have been printed. ------\n" << std::endl;
-
+    */
 }
 

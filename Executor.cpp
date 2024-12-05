@@ -4,8 +4,12 @@
 #include <thread>
 #include <random>
 #include <sstream>
+#include <mutex>
 #include <chrono>
 #include "Executor.h"
+
+extern std::vector<bool> results;
+std::mutex results_mutex;
 
 // Initializes executor test with test number
 Executor::Executor(std::function<bool()> test)
@@ -23,6 +27,11 @@ void Executor::execute(int testIndex) {
         errorMessage = e.what();
         result = 0;
     }
+    
+    std::lock_guard<std::mutex> lock(results_mutex);
+    results.push_back(result);
+    std::cout << "The above has been pushed!" << std::endl;
+
     /*msg << "Test " << testIndex << " has ended.\n";
     std::cout << msg.str();*/
 
@@ -32,7 +41,7 @@ void Executor::execute(int testIndex) {
 ResultLog Executor::packageResults() {
     std::stringstream msg;
 
-    msg << "Result: " << result << "   |||   Error Message: " << errorMessage << ".\n";
+    msg << "IN PACKAGING - Result: " << result << " Error Message: " << errorMessage << "\n";
     std::cout << msg.str();
     return ResultLog(result, errorMessage);
 }
