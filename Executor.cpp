@@ -8,7 +8,7 @@
 #include <chrono>
 #include "Executor.h"
 
-extern std::vector<bool> results;
+extern std::vector<ResultLog> results;
 std::mutex results_mutex;
 
 // Initializes executor test with test number
@@ -29,8 +29,7 @@ void Executor::execute(int testIndex) {
     }
     
     std::lock_guard<std::mutex> lock(results_mutex);
-    results.push_back(result);
-    std::cout << "The above has been pushed!" << std::endl;
+    results.push_back(packageResults());
 
     /*msg << "Test " << testIndex << " has ended.\n";
     std::cout << msg.str();*/
@@ -39,9 +38,6 @@ void Executor::execute(int testIndex) {
 
 // Passes results and exceptions to Result Log
 ResultLog Executor::packageResults() {
-    std::stringstream msg;
-
-    msg << "IN PACKAGING - Result: " << result << " Error Message: " << errorMessage << "\n";
-    std::cout << msg.str();
+    
     return ResultLog(result, errorMessage);
 }
