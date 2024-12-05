@@ -2,8 +2,11 @@
 #include <sstream>
 #include <iomanip>
 
-ResultLog::ResultLog(bool passed, const std::string & message):
-	passed(passed), message(message) {
+using std::setw;
+const int width = 13;
+
+ResultLog::ResultLog(bool passed, const std::string & message, int testID):
+	passed(passed), message(message), testID(testID) {
 	timestamp = generateTimestamp();
 }
 
@@ -31,16 +34,18 @@ std::string ResultLog::getTimestamp() const {
 //Log details based on Log levels
 std::string ResultLog::getLogDetails(LogLevel logLevel) const {
 	std::ostringstream logStream;
-	logStream << "Timestamp: " << getTimestamp() << "\n";
+	logStream << std::left;
+	logStream << "Test " << testID << "\n";
 	// Log details based on log level
 	switch(logLevel) {
 		case LogLevel::PASS_FAIL:
-			logStream << "Test Result: " << (didPass() ? "PASS" : "FAIL") << "\n";
+			logStream << setw(width) << "  Result: " << (didPass() ? "PASS" : "FAIL") << "\n";
 			break;
 		case LogLevel::TEST_SPECIFIC:
-			logStream << "Test Result: " << (didPass() ? "PASS" : "FAIL") << "\n" << "Message: " << getMessage() << "\n";
+			logStream << setw(width) << "  Result : " << (didPass() ? "PASS" : "FAIL") << "\n";
+			logStream << setw(width) << "  Message: " << getMessage() << "\n";
 			break;
-
 	}
+	logStream << setw(width) << "  Timestamp: " << getTimestamp() << "\n\n";
 	return logStream.str();
 }

@@ -13,7 +13,7 @@ enum class LogLevel {
 
 class ResultLog {
 	public:
-		ResultLog(bool passed, const std::string& message);
+		ResultLog(bool passed, const std::string& message, int testID);
 		bool didPass() const; // Fetch test log data
 		std::string getMessage() const;
 		std::string getTimestamp() const;
@@ -23,5 +23,6 @@ class ResultLog {
 		std::string message; // Message with specific information or errors
 		std::string timestamp; // Timestamp of the test execution
 		std::string generateTimestamp() const; // Generate the current timestamp
+		int testID;
 };
 #endif

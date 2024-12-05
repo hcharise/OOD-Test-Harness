@@ -11,9 +11,13 @@
 extern std::vector<ResultLog> results;
 std::mutex results_mutex;
 
+int Executor::numOfTests = 0;
+
 // Initializes executor test with test number
 Executor::Executor(std::function<bool()> test)
     : test(test) {
+    numOfTests++;
+    testID = numOfTests;
 }
 
 // Attempts to run given test, stores result if successful
@@ -23,6 +27,7 @@ void Executor::execute(int testIndex) {
 
     try {
         result = this->test();
+        errorMessage = "No errors.";
     } catch(const std::exception& e) {
         errorMessage = e.what();
         result = 0;
@@ -38,6 +43,5 @@ void Executor::execute(int testIndex) {
 
 // Passes results and exceptions to Result Log
 ResultLog Executor::packageResults() {
-    
-    return ResultLog(result, errorMessage);
+    return ResultLog(result, errorMessage, testID);
 }

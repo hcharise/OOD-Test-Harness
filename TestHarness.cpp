@@ -75,7 +75,7 @@ void TestHarness::runAllTests() {
     trpl.wait();
 
     std::stringstream msg;
-    msg << "Thread pool complete!\n";
+    msg << "-------- Thread pool complete! --------\n\n";
     std::cout << msg.str();
 
     for (auto result : results) {
