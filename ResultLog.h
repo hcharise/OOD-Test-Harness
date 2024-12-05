@@ -4,9 +4,6 @@
 #include <string>
 #include <vector>
 #include <ctime>  //For Date Time stamp
-#include <sstream>
-#include <iomanip>
-#include <json/json.h>  // Assuming JSON serialization (Boost or other JSON libraries*)
 
 enum class LogLevel {
 	PASS_FAIL, // Only logs pass/fail status
@@ -14,17 +11,17 @@ enum class LogLevel {
 };
 
 class ResultLog {
-	public:
-		ResultLog(bool passed, const std::string& message, int testID);
-		bool didPass() const; // Fetch test log data
-		std::string getMessage() const;
-		std::string getTimestamp() const;
-		std::string getLogDetails(LogLevel logLevel) const; // Method to display results based on log level
-	private:
-		bool passed; // Indicates if the test passed
-		std::string message; // Message with specific information or errors
-		std::string timestamp; // Timestamp of the test execution
-		std::string generateTimestamp() const; // Generate the current timestamp
-		int testID;
+public:
+	ResultLog(bool passed, const std::string& message, int testID);
+	bool didPass() const; // Fetch test log data
+	std::string getMessage() const;
+	std::string getTimestamp() const;
+	std::string getLogDetails(LogLevel logLevel, int numOfTests) const; // Method to display results based on log level
+private:
+	bool passed; // Indicates if the test passed
+	std::string message; // Message with specific information or errors
+	std::string timestamp; // Timestamp of the test execution
+	std::string generateTimestamp() const; // Generate the current timestamp
+	int testID;
 };
 #endif
