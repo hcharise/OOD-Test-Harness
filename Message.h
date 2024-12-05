@@ -3,10 +3,11 @@
 
 #include <string>
 #include <ctime>
+#include <nlohmann/json.hpp>
 
 class Message {
 public:
-    Message(std::string src, std::string dest, std::string type, std::string author, std::string body);
+    Message(std::string& src, std::string& dest, std::string& type, std::string& author, std::string& body);
 
     std::string getSource() const;
     std::string getDestination() const;
