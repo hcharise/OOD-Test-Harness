@@ -21,7 +21,7 @@ Executor::Executor(std::function<bool()> test)
 }
 
 // Attempts to run given test, stores result if successful
-void Executor::execute(int testIndex) {
+void Executor::execute() {
 
     std::stringstream msg;
 

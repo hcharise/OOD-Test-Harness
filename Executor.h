@@ -8,12 +8,12 @@
 class Executor {
     public:
         Executor(std::function<bool()>);
-        void execute(int testIndex);
+        void execute();
         ResultLog packageResults();
         static int numOfTests;
+        int testID;
     private:
         std::function<bool()> test;
-        int testID;
         bool result;
         std::string errorMessage;
 };
