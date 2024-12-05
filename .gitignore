@@ -4,3 +4,10 @@ functionsToTest.exe
 /OOD Test Harness/x64/Debug
 /OOD Test Harness
 /.vs
+/OOD-Test-Harness/x64/Debug
+/OOD-Test-Harness/OOD-Test-Harness.sln
+/OOD-Test-Harness/OOD-Test-Harness.vcxproj
+/OOD-Test-Harness/OOD-Test-Harness.vcxproj.filters
+/OOD-Test-Harness/OOD-Test-Harness.vcxproj.user
+/OOD-Test-Harness/.vs/OOD-Test-Harness
+/OOD-Test-Harness/OOD-Test-Harness/x64/Debug
