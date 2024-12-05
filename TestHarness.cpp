@@ -10,6 +10,7 @@
 using std::vector;
 using std::thread;
 using std::cout;
+using std::endl;
 
 std::vector<ResultLog> results;
 
@@ -55,12 +56,15 @@ void TestHarness::runAllTests() {
     ThreadPool<3> trpl;
     int testNum = 0;
 
+    cout << "-------- Threadpool started.. --------\n";
+
+
     for (auto executor : executors) {
         testNum++;
 
         ThreadPool<3>::CallObj co = [&trpl, executor, testNum]() mutable ->bool {
             std::stringstream msg;
-            msg << "Thread " << Utilities::Converter<std::thread::id>::toString(std::this_thread::get_id()) << " running test " << testNum << "\n";
+            msg << "Thread " << Utilities::Converter<thread::id>::toString(std::this_thread::get_id()) << " running test " << testNum << "\n";
             std::cout << msg.str();
 
             executor.execute(testNum);
@@ -74,31 +78,22 @@ void TestHarness::runAllTests() {
     trpl.workItem(exit);
     trpl.wait();
 
-    std::stringstream msg;
-    msg << "-------- Thread pool complete! --------\n\n";
-    std::cout << msg.str();
+    cout << "-------- Threadpool complete! --------\n\n";
 
-    for (auto result : results) {
-        cout << result.getLogDetails(LogLevel::TEST_SPECIFIC);
-    }
 
 }
 
 // Prints header/footer and the result log for each test run
 void TestHarness::printOutResults(LogLevel logLevel) {
 
-    /*for (Executor executor : executors) {
-        std::stringstream msg;
-        msg << "HERE result = " << executor.result << "\n";
-        std::cout << msg.str(); 
-        testResults.push_back(executor.packageResults());
+   
+    cout << "------------ TEST RESULTS ------------\n" << endl;
+
+    for (auto result : results) {
+        cout << result.getLogDetails(LogLevel::TEST_SPECIFIC);
     }
-    int i = 1;
-    std::cout << "------------ TEST RESULTS ------------\n" << std::endl;
-    for(ResultLog resultLog : testResults) {
-        cout << "Test " << i++ << ":\t" << resultLog.getLogDetails(logLevel) << "\n";
-    } 
-    std::cout << "------ All results have been printed. ------\n" << std::endl;
-    */
+
+    cout << "----------- End of Results -----------\n" << endl;
+
 }
 
