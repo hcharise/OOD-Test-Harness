@@ -4,9 +4,9 @@
 #include <algorithm>
 
 #include "ThreadPool.h"
-#include "Sockets.h"
 #include "TestHarness.h"
 #include "ResultLog.h"
+#include "reciver.cpp"
 
 using std::vector;
 using std::thread;
@@ -29,13 +29,29 @@ TestHarness::TestHarness(vector<std::function<bool()>> tests) {
 void TestHarness::runAllTests() {
 
     // Create threadpool
-    ThreadPool<3> trpl;
+    ThreadPool<4> trpl;
 
     cout << "-------- Threadpool started.. --------\n";
+    ThreadPool<4>::CallObj co = [&trpl]() mutable ->bool {
+        
+        // Reciving Thread for the socket
+        for (int i = 0; i < Executor::numOfTests; i++) {
+            std::string message;
+            getMessage(message);
+            std::cout << message << std::endl;
+        }
+
+        
+
+        return true; // True tells the thread to continue taking tasks
+    };
+
+    // Add new callable object to blocking queue that threads pull tasks from
+    trpl.workItem(co);
 
     // Declare a callable object for each executor
     for (auto executor : executors) {
-        ThreadPool<3>::CallObj co = [&trpl, executor]() mutable ->bool {
+        ThreadPool<4>::CallObj co = [&trpl, executor]() mutable ->bool {
             // Threadsafe message indicating which test is being run by which thread
             std::stringstream msg;
             msg << "Thread " << Utilities::Converter<thread::id>::toString(std::this_thread::get_id()) << " running test " << executor.testID << "\n";
@@ -52,7 +68,7 @@ void TestHarness::runAllTests() {
     }
 
     // Send "exit" task and wait for all tasks in threadpool to complete
-    ThreadPool<3>::CallObj exit = []() ->bool { return false; };
+    ThreadPool<4>::CallObj exit = []() ->bool { return false; };
     trpl.workItem(exit);
     trpl.wait();
 
