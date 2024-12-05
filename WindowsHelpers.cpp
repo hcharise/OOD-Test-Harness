@@ -74,12 +74,3 @@ std::string WindowsHelpers::GetLastMsg(bool WantSocketMsg) {
     LocalFree(lpBuffer);
     return _msg;
 }
-
-#ifdef TEST_WINDOWSHELPERS
-
-int main()
-{
-
-}
-
-#endif

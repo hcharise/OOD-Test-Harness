@@ -66,9 +66,8 @@ void TestHarness::printOutResults(LogLevel logLevel) {
     cout << "------------ TEST RESULTS ------------\n" << endl;
 
     for (auto result : results) {
-        cout << result.getLogDetails(LogLevel::TEST_SPECIFIC, Executor::numOfTests);
+        cout << result.getLogDetails(logLevel, Executor::numOfTests);
     }
 
     cout << "----------- End of Results -----------" << endl;
 }
-

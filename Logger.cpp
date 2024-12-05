@@ -80,37 +80,3 @@ struct Cosmetic
 {
     ~Cosmetic() { std::cout << "\n\n"; }
 } cosmetic;
-
-#ifdef TEST_LOGGER
-
-using Util = Utilities::StringHelper;
-
-int main()
-{
-    //Util::Title("Testing Logger Class");
-    Logger log;
-    log.attach(&std::cout);
-    log.write("\n  won't get logged - not started yet");
-    log.start();
-    log.title("Testing Logger Class", '=');
-    log.write("\n  one");
-    log.write("\n  two");
-    log.write("\n  fini");
-    log.stop();
-    log.write("\n  won't get logged - stopped");
-    log.start();
-    log.write("\n  starting again");
-    log.write("\n  and stopping again");
-    log.stop("\n  terminating now");
-
-    StaticLogger<1>::attach(&std::cout);
-    StaticLogger<1>::start();
-    StaticLogger<1>::write("\n");
-    StaticLogger<1>::title("Testing StaticLogger class");
-    StaticLogger<1>::write("\n  static logger at work");
-    Logger& logger = StaticLogger<1>::instance();
-    logger.write("\n  static logger still at work");
-    logger.stop("\n  stopping static logger");
-}
-
-#endif
