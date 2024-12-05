@@ -8,7 +8,6 @@
 enum class LogLevel {
 	PASS_FAIL, // Only logs pass/fail status
 	TEST_SPECIFIC, // Logs specific messages for each test
-	DEBUG // Logs detailed debugging information, including timestamps and variable values
 };
 
 class ResultLog {
@@ -17,7 +16,7 @@ class ResultLog {
 		bool didPass() const; // Fetch test log data
 		std::string getMessage() const;
 		std::string getTimestamp() const;
-		std::string getLogDetails(LogLevel logLevel) const; // Method to display results based on log level
+		std::string getLogDetails(LogLevel logLevel, int numOfTests) const; // Method to display results based on log level
 	private:
 		bool passed; // Indicates if the test passed
 		std::string message; // Message with specific information or errors

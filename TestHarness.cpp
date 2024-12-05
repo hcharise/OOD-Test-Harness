@@ -13,10 +13,9 @@ using std::thread;
 using std::cout;
 using std::endl;
 
-// Shared vector that holds results from executors
-std::vector<ResultLog> results;
+std::vector<ResultLog> results; // Shared vector that holds results from executors
 
-// Constructor - checks that vector is non-empty
+// Constructor - checks that vector is non-empty, creates executor object for each test
 TestHarness::TestHarness(vector<std::function<bool()>> tests) {
     if (tests.empty()) throw std::invalid_argument("No tests passed in.");
 
@@ -26,7 +25,7 @@ TestHarness::TestHarness(vector<std::function<bool()>> tests) {
     }
 }
 
-// Creates and runs executor for each lambda in tests vector
+// Creates threadpool and passes in all tests to be run
 void TestHarness::runAllTests() {
 
     // Create threadpool
@@ -67,10 +66,9 @@ void TestHarness::printOutResults(LogLevel logLevel) {
     cout << "------------ TEST RESULTS ------------\n" << endl;
 
     for (auto result : results) {
-        cout << result.getLogDetails(LogLevel::TEST_SPECIFIC);
+        cout << result.getLogDetails(LogLevel::TEST_SPECIFIC, Executor::numOfTests);
     }
 
-    cout << "----------- End of Results -----------\n" << endl;
-
+    cout << "----------- End of Results -----------" << endl;
 }
 

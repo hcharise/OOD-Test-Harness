@@ -1,9 +1,10 @@
 #ifndef EXECUTOR_H
 #define EXECUTOR_H
 
-#include "ResultLog.h"
 #include <functional>
 #include <string>
+
+#include "ResultLog.h"
 
 class Executor {
     public:

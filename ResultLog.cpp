@@ -32,10 +32,10 @@ std::string ResultLog::getTimestamp() const {
 	return timestamp;
 }
 //Log details based on Log levels
-std::string ResultLog::getLogDetails(LogLevel logLevel) const {
+std::string ResultLog::getLogDetails(LogLevel logLevel, int numOfTests) const {
 	std::ostringstream logStream;
 	logStream << std::left;
-	logStream << "Test " << testID << "\n";
+	logStream << "Test " << testID << " of " << numOfTests << "\n";
 	// Log details based on log level
 	switch(logLevel) {
 		case LogLevel::PASS_FAIL:

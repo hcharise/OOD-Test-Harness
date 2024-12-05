@@ -1,17 +1,15 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-#include <thread>
-#include <random>
 #include <sstream>
 #include <mutex>
-#include <chrono>
+
 #include "Executor.h"
 
-extern std::vector<ResultLog> results;
-std::mutex results_mutex;
+extern std::vector<ResultLog> results; // Shared vector that holds results from executors
+std::mutex results_mutex; // Mutually exclusive access to results vector
 
-int Executor::numOfTests = 0;
+int Executor::numOfTests = 0; // Overall count of tests
 
 // Initializes executor test with test number
 Executor::Executor(std::function<bool()> test)
@@ -20,10 +18,8 @@ Executor::Executor(std::function<bool()> test)
     testID = numOfTests;
 }
 
-// Attempts to run given test, stores result if successful
+// Attempts to run given test, stores result on results vector
 void Executor::execute() {
-
-    std::stringstream msg;
 
     try {
         result = this->test();
@@ -35,10 +31,6 @@ void Executor::execute() {
     
     std::lock_guard<std::mutex> lock(results_mutex);
     results.push_back(packageResults());
-
-    /*msg << "Test " << testIndex << " has ended.\n";
-    std::cout << msg.str();*/
-
 }
 
 // Passes results and exceptions to Result Log
