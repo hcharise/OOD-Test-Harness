@@ -3,7 +3,7 @@
 
 #include <string>
 #include <ctime>
-#include <nlohmann/json.hpp>
+#include <json.hpp>
 
 class Message {
 public:

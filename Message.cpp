@@ -1,7 +1,7 @@
 #include "Message.h"
 #include <sstream>
 #include <iomanip>
-#include <nlohmann/json.hpp>
+#include <json.hpp>
 
 using json = nlohmann::json;
 
