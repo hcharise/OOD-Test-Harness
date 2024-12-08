@@ -6,7 +6,7 @@
 #include "ThreadPool.h"
 #include "TestHarness.h"
 #include "ResultLog.h"
-#include "reciver.cpp"
+#include "reciver.h"
 
 using std::vector;
 using std::thread;
