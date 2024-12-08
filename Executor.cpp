@@ -5,7 +5,7 @@
 #include <mutex>
 
 #include "Executor.h"
-#include "Sender.cpp"
+#include "sender.h"
 
 extern std::vector<ResultLog> results; // Shared vector that holds results from executors
 std::mutex results_mutex; // Mutually exclusive access to results vector
@@ -34,7 +34,7 @@ void Executor::execute() {
 
     results.push_back(packageResults());
     // THIS NEEDS the message data from results to be serialized and sent
-    const char* message = "message";
+    const char* message = "The executor sent this!";
     sendMessage(message);
 }
 
