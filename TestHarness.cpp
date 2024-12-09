@@ -7,6 +7,7 @@
 #include "TestHarness.h"
 #include "ResultLog.h"
 #include "reciver.cpp"
+#include "Message.h"
 
 using std::vector;
 using std::thread;
@@ -38,11 +39,21 @@ void TestHarness::runAllTests() {
         for (int i = 0; i < Executor::numOfTests; i++) {
             std::string message;
             getMessage(message);
-            std::cout << message << std::endl;
+            // std::cout << message << std::endl;
+            try {
+                Message msg = Message::deserialize(message);
+                std::cout << "Received Message:\n"
+                      << "Source: " << msg.getSource() << "\n"
+                      << "Destination: " << msg.getDestination() << "\n"
+                      << "Type: " << msg.getType() << "\n"
+                      << "Author: " << msg.getAuthor() << "\n"
+                      << "Timestamp: " << msg.getTimeStamp() << "\n"
+                      << "Body: " << msg.getBody() << "\n";
+            }
+            catch (const std::exception& e) {
+                std::cout << "Error deserializing message: " << e.what() << "\n";
+            }
         }
-
-        
-
         return true; // True tells the thread to continue taking tasks
     };
 
