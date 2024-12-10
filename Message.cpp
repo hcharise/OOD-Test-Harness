@@ -1,7 +1,7 @@
 #include "Message.h"
 #include <sstream>
 #include <iomanip>
-#include <json.hpp>
+#include "json.hpp"
 
 using json = nlohmann::json;
 
@@ -41,11 +41,11 @@ std::string Message::serialize() const {
 // Deserlize from JSON
 Message Message::deserialize(const std::string& data) {
     json j = json::parse(data);
-    return Message(
-        j["source"].get<std::string>(),
-        j["destination"].get<std::string>(),
-        j["type"].get<std::string>(),
-        j["author"].get<std::string>(),
-        j["body"].get<std::string>()
-    );
+    std::string param1 = j["source"].get<std::string>();
+    std::string param2 = j["destination"].get<std::string>();
+    std::string param3 = j["type"].get<std::string>();
+    std::string param4 = j["author"].get<std::string>();
+    std::string param5 = j["body"].get<std::string>();
+
+    return Message(param1, param2, param3, param4, param5);
 }
