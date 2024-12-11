@@ -1,0 +1,143 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\hchar\\OneDrive\\Other\\Desktop\\OOD-Test-Harness\\DLL4\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{ACD6D722-2259-4B9C-A339-ED57EAAF82F1}|DLL4\\DLL4.vcxproj|C:\\Users\\hchar\\OneDrive\\Other\\Desktop\\OOD-Test-Harness\\DLL4\\DLL4\\pch.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ACD6D722-2259-4B9C-A339-ED57EAAF82F1}|DLL4\\DLL4.vcxproj|solutionrelative:DLL4\\pch.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACD6D722-2259-4B9C-A339-ED57EAAF82F1}|DLL4\\DLL4.vcxproj|C:\\Users\\hchar\\OneDrive\\Other\\Desktop\\OOD-Test-Harness\\DLL4\\DLL4\\dllmain.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ACD6D722-2259-4B9C-A339-ED57EAAF82F1}|DLL4\\DLL4.vcxproj|solutionrelative:DLL4\\dllmain.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACD6D722-2259-4B9C-A339-ED57EAAF82F1}|DLL4\\DLL4.vcxproj|C:\\Users\\hchar\\OneDrive\\Other\\Desktop\\OOD-Test-Harness\\DLL4\\DLL4\\DLL4.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ACD6D722-2259-4B9C-A339-ED57EAAF82F1}|DLL4\\DLL4.vcxproj|solutionrelative:DLL4\\DLL4.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACD6D722-2259-4B9C-A339-ED57EAAF82F1}|DLL4\\DLL4.vcxproj|C:\\Users\\hchar\\OneDrive\\Other\\Desktop\\OOD-Test-Harness\\DLL4\\DLL4\\pch.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ACD6D722-2259-4B9C-A339-ED57EAAF82F1}|DLL4\\DLL4.vcxproj|solutionrelative:DLL4\\pch.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACD6D722-2259-4B9C-A339-ED57EAAF82F1}|DLL4\\DLL4.vcxproj|C:\\Users\\hchar\\OneDrive\\Other\\Desktop\\OOD-Test-Harness\\DLL4\\DLL4\\iTest.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ACD6D722-2259-4B9C-A339-ED57EAAF82F1}|DLL4\\DLL4.vcxproj|solutionrelative:DLL4\\iTest.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACD6D722-2259-4B9C-A339-ED57EAAF82F1}|DLL4\\DLL4.vcxproj|C:\\Users\\hchar\\OneDrive\\Other\\Desktop\\OOD-Test-Harness\\DLL4\\DLL4\\framework.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ACD6D722-2259-4B9C-A339-ED57EAAF82F1}|DLL4\\DLL4.vcxproj|solutionrelative:DLL4\\framework.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACD6D722-2259-4B9C-A339-ED57EAAF82F1}|DLL4\\DLL4.vcxproj|C:\\Users\\hchar\\OneDrive\\Other\\Desktop\\OOD-Test-Harness\\DLL4\\DLL4\\DLL4.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{ACD6D722-2259-4B9C-A339-ED57EAAF82F1}|DLL4\\DLL4.vcxproj|solutionrelative:DLL4\\DLL4.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 116,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "pch.cpp",
+              "DocumentMoniker": "C:\\Users\\hchar\\OneDrive\\Other\\Desktop\\OOD-Test-Harness\\DLL4\\DLL4\\pch.cpp",
+              "RelativeDocumentMoniker": "DLL4\\pch.cpp",
+              "ToolTip": "C:\\Users\\hchar\\OneDrive\\Other\\Desktop\\OOD-Test-Harness\\DLL4\\DLL4\\pch.cpp*",
+              "RelativeToolTip": "DLL4\\pch.cpp*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-11T20:27:07.607Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "pch.h",
+              "DocumentMoniker": "C:\\Users\\hchar\\OneDrive\\Other\\Desktop\\OOD-Test-Harness\\DLL4\\DLL4\\pch.h",
+              "RelativeDocumentMoniker": "DLL4\\pch.h",
+              "ToolTip": "C:\\Users\\hchar\\OneDrive\\Other\\Desktop\\OOD-Test-Harness\\DLL4\\DLL4\\pch.h*",
+              "RelativeToolTip": "DLL4\\pch.h*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-11T20:25:48.466Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DLL4.cpp",
+              "DocumentMoniker": "C:\\Users\\hchar\\OneDrive\\Other\\Desktop\\OOD-Test-Harness\\DLL4\\DLL4\\DLL4.cpp",
+              "RelativeDocumentMoniker": "DLL4\\DLL4.cpp",
+              "ToolTip": "C:\\Users\\hchar\\OneDrive\\Other\\Desktop\\OOD-Test-Harness\\DLL4\\DLL4\\DLL4.cpp*",
+              "RelativeToolTip": "DLL4\\DLL4.cpp*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-11T20:24:20.21Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "dllmain.cpp",
+              "DocumentMoniker": "C:\\Users\\hchar\\OneDrive\\Other\\Desktop\\OOD-Test-Harness\\DLL4\\DLL4\\dllmain.cpp",
+              "RelativeDocumentMoniker": "DLL4\\dllmain.cpp",
+              "ToolTip": "C:\\Users\\hchar\\OneDrive\\Other\\Desktop\\OOD-Test-Harness\\DLL4\\DLL4\\dllmain.cpp*",
+              "RelativeToolTip": "DLL4\\dllmain.cpp*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-11T20:23:18.706Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "iTest.h",
+              "DocumentMoniker": "C:\\Users\\hchar\\OneDrive\\Other\\Desktop\\OOD-Test-Harness\\DLL4\\DLL4\\iTest.h",
+              "RelativeDocumentMoniker": "DLL4\\iTest.h",
+              "ToolTip": "C:\\Users\\hchar\\OneDrive\\Other\\Desktop\\OOD-Test-Harness\\DLL4\\DLL4\\iTest.h*",
+              "RelativeToolTip": "DLL4\\iTest.h*",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAAC0AAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-11T20:24:49.238Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "framework.h",
+              "DocumentMoniker": "C:\\Users\\hchar\\OneDrive\\Other\\Desktop\\OOD-Test-Harness\\DLL4\\DLL4\\framework.h",
+              "RelativeDocumentMoniker": "DLL4\\framework.h",
+              "ToolTip": "C:\\Users\\hchar\\OneDrive\\Other\\Desktop\\OOD-Test-Harness\\DLL4\\DLL4\\framework.h*",
+              "RelativeToolTip": "DLL4\\framework.h*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-11T20:25:31.873Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DLL4.h",
+              "DocumentMoniker": "C:\\Users\\hchar\\OneDrive\\Other\\Desktop\\OOD-Test-Harness\\DLL4\\DLL4\\DLL4.h",
+              "RelativeDocumentMoniker": "DLL4\\DLL4.h",
+              "ToolTip": "C:\\Users\\hchar\\OneDrive\\Other\\Desktop\\OOD-Test-Harness\\DLL4\\DLL4\\DLL4.h*",
+              "RelativeToolTip": "DLL4\\DLL4.h*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-11T20:24:33.681Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
