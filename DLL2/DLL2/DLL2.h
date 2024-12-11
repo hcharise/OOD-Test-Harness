@@ -3,7 +3,7 @@
 #ifdef DLL2_EXPORTS
 #define DLL2_API __declspec(dllexport)
 #else
-#define MATHLIBRARY_API __declspec(dllimport)
+#define DLL1_API __declspec(dllimport)
 #endif
 
 #include <stdexcept>

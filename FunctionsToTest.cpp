@@ -23,16 +23,27 @@
 #include <windows.h>
 typedef bool (*funcTestDriver)();
 
+void runDLL(const wchar_t* libTag, std::string libName);
+
 int main()
 {
+	runDLL(L"DLL1", "DLL1");
+	runDLL(L"DLL2", "DLL2");
+	runDLL(L"DLL3", "DLL3");
+	runDLL(L"DLL4", "DLL4");
+	
+	return 0;
+}
+
+void runDLL(const wchar_t* libTag, std::string libName) {
 	HINSTANCE hDLL;
 	funcTestDriver testDriver;
 
-	const wchar_t* libName = L"DLL1";
-	hDLL = LoadLibraryEx(libName, NULL, NULL); // Handle to DLL
+	hDLL = LoadLibraryEx(libTag, NULL, NULL); // Handle to DLL
+
+	std::cout << "----- " << libName << " -----" << std::endl;
 
 	if (hDLL != NULL) {
-
 		testDriver = (funcTestDriver)GetProcAddress(hDLL, "testDriver");
 
 		if (testDriver != NULL) {
@@ -46,24 +57,5 @@ int main()
 	else {
 		std::cout << "Library load failed!" << std::endl;
 	}
-
-	libName = L"DLL2";
-	hDLL = LoadLibraryEx(libName, NULL, NULL); // Handle to DLL
-
-	if (hDLL != NULL) {
-
-		testDriver = (funcTestDriver)GetProcAddress(hDLL, "testDriver");
-
-		if (testDriver != NULL) {
-			std::cout << "Test Driver = " << testDriver() << std::endl;
-		}
-		else
-			std::cout << "Did not load Test Driver correctly." << std::endl;
-
-		FreeLibrary(hDLL);
-	}
-	else {
-		std::cout << "Library load failed!" << std::endl;
-	}
-	return 0;
+	return;
 }

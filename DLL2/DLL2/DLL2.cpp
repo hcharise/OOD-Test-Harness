@@ -10,7 +10,7 @@
 
 DLL2_API bool testDriver() { 
 	
-    // Should pass
+    // Should FAIL
     Pos_Num posNum(-3);
 
     // Should pass
