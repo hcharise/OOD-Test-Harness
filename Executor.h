@@ -3,6 +3,8 @@
 
 #include <functional>
 #include <string>
+#include <codecvt>
+#include <locale>
 
 #include "ResultLog.h"
 
@@ -17,6 +19,7 @@ class Executor {
         ResultLog packageResults();
         static int numOfTests;
         int testID;
+        std::string getStringLibTag();
     private:
         const wchar_t* libTag;
         bool result;

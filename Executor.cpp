@@ -31,8 +31,6 @@ void Executor::execute() {
         result = 0;
     }
 
-    
-    
     // std::lock_guard<std::mutex> lock(results_mutex);
     // results.push_back(packageResults());
     
@@ -45,7 +43,7 @@ void Executor::execute() {
     std::string msgSrc = "Executor";
     std::string msgDest = "TestHarness";
     std::string msgType = "TestResult";
-    std::string msgAuthor = "Executor";
+    std::string msgAuthor = getStringLibTag();
     std::string msgBody = std::to_string(static_cast<int>(result)) + errorMessage;
 
     Message msg(msgSrc, msgDest, msgType, msgAuthor, msgBody);
@@ -75,6 +73,12 @@ bool Executor::runDLL() {
 		std::cout << "Library load failed!" << std::endl;
         return false;
 	}
+}
+
+std::string Executor::getStringLibTag() {
+    // Convert const wchar_t* to std::string (UTF-8 encoding)
+    std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+    return converter.to_bytes(libTag);
 }
 
 // Passes results and exceptions to Result Log
