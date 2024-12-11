@@ -18,17 +18,6 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="DLL1\DLL1.h" />
-    <ClInclude Include="DLL1\framework.h" />
-    <ClInclude Include="DLL1\iTest.h" />
-    <ClInclude Include="DLL1\pch.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="DLL1\DLL1.cpp" />
-    <ClCompile Include="DLL1\dllmain.cpp" />
-    <ClCompile Include="DLL1\pch.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -144,6 +133,17 @@
       <EnableUAC>false</EnableUAC>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="DLL1.h" />
+    <ClInclude Include="iTest.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="framework.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="DLL1.cpp" />
+    <ClCompile Include="pch.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
