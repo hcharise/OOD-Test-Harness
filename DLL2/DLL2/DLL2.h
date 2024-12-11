@@ -6,4 +6,9 @@
 #define MATHLIBRARY_API __declspec(dllimport)
 #endif
 
+#include <stdexcept>
+#include <iostream>
+
+#include "iTest.h"
+
 extern "C" DLL2_API bool testDriver();

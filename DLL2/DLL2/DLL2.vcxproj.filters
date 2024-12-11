@@ -24,6 +24,9 @@
     <ClInclude Include="DLL2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="iTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">

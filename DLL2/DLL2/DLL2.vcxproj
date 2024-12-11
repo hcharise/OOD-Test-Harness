@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="DLL2.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="iTest.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
