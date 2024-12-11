@@ -44,8 +44,6 @@ bool Executor::runDLL() {
 
 	hDLL = LoadLibraryEx(libTag, NULL, NULL); // Handle to DLL
 
-	std::cout << "----- " << libTag << " -----" << std::endl;
-
 	if (hDLL != NULL) {
 		testDriver = (funcTestDriver)GetProcAddress(hDLL, "testDriver");
 
