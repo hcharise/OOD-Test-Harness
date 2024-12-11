@@ -17,11 +17,12 @@ using std::endl;
 std::vector<ResultLog> results; // Shared vector that holds results from executors
 
 // Constructor - checks that vector is non-empty, creates executor object for each test
-TestHarness::TestHarness(vector<std::function<bool()>> tests) {
-    if (tests.empty()) throw std::invalid_argument("No tests passed in.");
+TestHarness::TestHarness(vector<const wchar_t*> libraries) {
+    if (libraries.empty()) throw std::invalid_argument("No libraries passed in.");
 
-    for (auto test : tests) {
-        Executor executor(test);
+    // CHANGE THIS to iterate through libraries and update executor() construction with params
+    for (const wchar_t* library : libraries) {
+        Executor executor(library);
         executors.push_back(executor);
     }
 }
