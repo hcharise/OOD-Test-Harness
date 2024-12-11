@@ -76,21 +76,30 @@
 ////}
 
 
+// MathTest.cpp : This file contains the 'main' function. Program execution begins
+// and ends there.
 #include <iostream>
 #include <windows.h>
 typedef double (*funcAdd)(double, double);
 typedef double (*funcMult)(double, double);
+typedef bool (*funcTestDriver)();
 
 int main()
 {
 	HINSTANCE hDLL;
 	funcAdd Add;
 	funcMult Multiply;
-	const wchar_t* libName = L"DLL1";
+	funcTestDriver testDriver;
+
+	const wchar_t* libName = L"DLL2";
 	hDLL = LoadLibraryEx(libName, NULL, NULL); // Handle to DLL
+
 	if (hDLL != NULL) {
+
 		Add = (funcAdd)GetProcAddress(hDLL, "Add");
 		Multiply = (funcMult)GetProcAddress(hDLL, "Multiply");
+		testDriver = (funcTestDriver)GetProcAddress(hDLL, "testDriver");
+
 		if (Add != NULL) {
 			std::cout << "10 + 10 = " << Add(10, 10) << std::endl;
 		}
@@ -101,6 +110,13 @@ int main()
 		}
 		else
 			std::cout << "Did not load Multiply correctly." << std::endl;
+
+		if (testDriver != NULL) {
+			std::cout << "Test Driver = " << testDriver() << std::endl;
+		}
+		else
+			std::cout << "Did not load Test Driver correctly." << std::endl;
+
 		FreeLibrary(hDLL);
 	}
 	else {
