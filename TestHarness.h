@@ -12,7 +12,7 @@ using std::thread;
 
 class TestHarness {
     public:
-        TestHarness(vector<std::function<bool()>> tests);
+        TestHarness(vector<const wchar_t*> libraries);
         void runAllTests();
         void printOutResults(LogLevel logLevel);
        //  void theadExecute(int i);

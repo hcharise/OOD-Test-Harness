@@ -6,15 +6,19 @@
 
 #include "ResultLog.h"
 
+typedef bool (*funcTestDriver)();
+
+
 class Executor {
     public:
-        Executor(std::function<bool()>);
+        Executor(const wchar_t* libTag);
         void execute();
+        bool runDLL();
         ResultLog packageResults();
         static int numOfTests;
         int testID;
     private:
-        std::function<bool()> test;
+        const wchar_t* libTag;
         bool result;
         std::string errorMessage;
 };

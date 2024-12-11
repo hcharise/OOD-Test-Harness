@@ -13,8 +13,8 @@ std::mutex results_mutex; // Mutually exclusive access to results vector
 int Executor::numOfTests = 0; // Overall count of tests
 
 // Initializes executor test with test number
-Executor::Executor(std::function<bool()> test)
-    : test(test) {
+Executor::Executor(const wchar_t* libTag)
+    : libTag(libTag) {
     numOfTests++;
     testID = numOfTests;
 }
@@ -23,7 +23,7 @@ Executor::Executor(std::function<bool()> test)
 void Executor::execute() {
 
     try {
-        result = this->test();
+        result = runDLL();
         errorMessage = "No errors.";
     } catch(const std::exception& e) {
         errorMessage = e.what();
@@ -36,6 +36,31 @@ void Executor::execute() {
     // THIS NEEDS the message data from results to be serialized and sent
     const char* message = "The executor sent this!";
     sendMessage(message);
+}
+
+bool Executor::runDLL() {
+	HINSTANCE hDLL;
+	funcTestDriver testDriver;
+
+	hDLL = LoadLibraryEx(libTag, NULL, NULL); // Handle to DLL
+
+	std::cout << "----- " << libTag << " -----" << std::endl;
+
+	if (hDLL != NULL) {
+		testDriver = (funcTestDriver)GetProcAddress(hDLL, "testDriver");
+
+		if (testDriver != NULL) {
+			return testDriver();
+		}
+		else
+			std::cout << "Did not load Test Driver correctly." << std::endl;
+
+		FreeLibrary(hDLL);
+	}
+	else {
+		std::cout << "Library load failed!" << std::endl;
+        return false;
+	}
 }
 
 // Passes results and exceptions to Result Log
