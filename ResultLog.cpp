@@ -5,8 +5,8 @@
 
 using std::setw;
 
-ResultLog::ResultLog(bool passed, const std::string& message, int testID) :
-	passed(passed), message(message), testID(testID) {
+ResultLog::ResultLog(bool passed, const std::string& message, int testID, std::string libName) :
+	passed(passed), message(message), testID(testID), libName(libName) {
 	timestamp = generateTimestamp();
 }
 
@@ -44,10 +44,12 @@ std::string ResultLog::getLogDetails(LogLevel logLevel, int numOfTests) const {
 	// Log details based on log level
 	switch (logLevel) {
 	case LogLevel::PASS_FAIL:
+		logStream << setw(width) << "  Library: " << libName << "\n";
 		logStream << setw(width) << "  Result: " << (didPass() ? "PASS" : "FAIL") << "\n";
 		break;
 
 	case LogLevel::TEST_SPECIFIC:
+		logStream << setw(width) << "  Library: " << libName << "\n";
 		logStream << setw(width) << "  Result: " << (didPass() ? "PASS" : "FAIL") << "\n";
 		logStream << setw(width) << "  Message: " << getMessage() << "\n";
 		break;

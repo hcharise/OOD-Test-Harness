@@ -31,8 +31,8 @@ void Executor::execute() {
         result = 0;
     }
 
-    // std::lock_guard<std::mutex> lock(results_mutex);
-    // results.push_back(packageResults());
+         std::lock_guard<std::mutex> lock(results_mutex);
+         results.push_back(packageResults());
     
     // THIS NEEDS the message data from results to be serialized and sent
     // const char* message = "The executor sent this!";
@@ -83,5 +83,5 @@ std::string Executor::getStringLibTag() {
 
 // Passes results and exceptions to Result Log
 ResultLog Executor::packageResults() {
-    return ResultLog(result, errorMessage, testID);
+    return ResultLog(result, errorMessage, testID, getStringLibTag());
 }

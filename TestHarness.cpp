@@ -14,6 +14,7 @@ using std::thread;
 using std::cout;
 using std::endl;
 
+std::vector<ResultLog> results; // Shared vector that holds results from executors
 
 // Constructor - checks that vector is non-empty, creates executor object for each test
 TestHarness::TestHarness(vector<const wchar_t*> libraries) {
@@ -65,7 +66,7 @@ void TestHarness::runAllTests() {
         ThreadPool<4>::CallObj co = [&trpl, executor]() mutable ->bool {
             // Threadsafe message indicating which test is being run by which thread
             std::stringstream msg;
-            msg << "Thread " << Utilities::Converter<thread::id>::toString(std::this_thread::get_id()) << " running " << executor.getStringLibTag() << "\n";
+            msg << "Thread " << Utilities::Converter<thread::id>::toString(std::this_thread::get_id()) << " running test " << executor.testID << " from " << executor.getStringLibTag() << "\n";
             std::cout << msg.str();
 
             // Run the test
