@@ -14,6 +14,14 @@ int main() {
     libraries.push_back(L"DLL2");
     libraries.push_back(L"DLL3");
     libraries.push_back(L"DLL4");
+    libraries.push_back(L"DLL1");
+    libraries.push_back(L"DLL2");
+    libraries.push_back(L"DLL3");
+    libraries.push_back(L"DLL4");
+    libraries.push_back(L"DLL1");
+    libraries.push_back(L"DLL2");
+    libraries.push_back(L"DLL3");
+    libraries.push_back(L"DLL4");
 
     // Create and run testHarness using tests declared above
     TestHarness testHarness(libraries);
