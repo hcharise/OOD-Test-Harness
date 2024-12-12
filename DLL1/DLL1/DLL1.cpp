@@ -19,5 +19,7 @@ DLL1_API bool testDriver() {
     // Should pass
     E_Divide_Ten divTen(10);
 
+    std::this_thread::sleep_for(std::chrono::seconds(10));
+
     return (posNum.test() && eqNum.test() && divTen.test());
 }
