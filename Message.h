@@ -7,7 +7,7 @@
 
 class Message {
 public:
-    Message(std::string& src, std::string& dest, std::string& type, std::string& author, std::string& body);
+    Message(const std::string& src,const std::string& dest,const std::string& type,const std::string& author,const std::string& body);
 
     std::string getSource() const;
     std::string getDestination() const;
