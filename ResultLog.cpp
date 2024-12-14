@@ -5,7 +5,7 @@
 
 using std::setw;
 
-ResultLog::ResultLog(bool passed, const std::string& message, int testID, std::string libName) :
+ResultLog::ResultLog(bool passed, const std::string& message, int testID, const std::string& libName) :
 	passed(passed), message(message), testID(testID), libName(libName) {
 	timestamp = generateTimestamp();
 }

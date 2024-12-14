@@ -7,14 +7,16 @@
 
 class Message {
 public:
-    Message(const std::string& src,const std::string& dest,const std::string& type,const std::string& author,const std::string& body);
+    Message(const std::string& src,const std::string& dest,const std::string& type,const std::string& author, const std::string& testID, const std::string& passed, const std::string& erroMessage);
 
     std::string getSource() const;
     std::string getDestination() const;
     std::string getType() const;
     std::string getAuthor() const;
+    std::string getTestID() const;
     std::string getTimeStamp() const;
-    std::string getBody() const;
+    std::string getPassed() const;
+    std::string getErrorMessage() const;
 
     // Puts it to String format
     std::string serialize() const;
@@ -27,9 +29,12 @@ private:
     std::string destination;
     std::string messageType;
     std::string author;
+    std::string testID;
     std::string timeStamp;
-    std::string body;
+    std::string passed;
+    std::string errorMessage;
     std::string getCurrentTime() const;
+    const static char endChar = '*'; // indicates the end of the message
 };
 
 #endif

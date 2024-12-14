@@ -26,7 +26,7 @@ int main() {
     // Create and run testHarness using tests declared above
     TestHarness testHarness(libraries);
     testHarness.runAllTests();
-    testHarness.printOutResults(LogLevel::TEST_SPECIFIC);
+    // testHarness.printOutResults(LogLevel::TEST_SPECIFIC);
     
     return 0;
 }

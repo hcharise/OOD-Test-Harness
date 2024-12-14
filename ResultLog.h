@@ -12,7 +12,7 @@ enum class LogLevel {
 
 class ResultLog {
 public:
-	ResultLog(bool passed, const std::string& message, int testID, std::string libName);
+	ResultLog(bool passed, const std::string& message, int testID, const std::string& libName);
 	bool didPass() const; // Fetch test log data
 	std::string getMessage() const;
 	std::string getTimestamp() const;

@@ -7,6 +7,7 @@
 #include <locale>
 
 #include "ResultLog.h"
+#include "json.h"
 
 typedef bool (*funcTestDriver)();
 

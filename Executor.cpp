@@ -31,24 +31,18 @@ void Executor::execute() {
         result = 0;
     }
 
-         std::lock_guard<std::mutex> lock(results_mutex);
-         results.push_back(packageResults());
-    
-    // THIS NEEDS the message data from results to be serialized and sent
-    // const char* message = "The executor sent this!";
-    // sendMessage(message);
-    // const char* message = "message";
-    // sendMessage(message);
-
     std::string msgSrc = "Executor";
     std::string msgDest = "TestHarness";
     std::string msgType = "TestResult";
     std::string msgAuthor = getStringLibTag();
-    std::string msgBody = std::to_string(static_cast<int>(result)) + errorMessage;
+    std::string msgTestID = std::to_string(testID);
+    std::string msgPassed = std::to_string(static_cast<int>(result));
+    std::string msgError = errorMessage;
 
-    Message msg(msgSrc, msgDest, msgType, msgAuthor, msgBody);
+    Message msg(msgSrc, msgDest, msgType, msgAuthor, msgTestID, msgPassed, msgError);
 
     std::string srlmsg = msg.serialize();
+
     sendMessage(srlmsg.c_str());
 }
 
@@ -79,9 +73,4 @@ std::string Executor::getStringLibTag() {
     // Convert const wchar_t* to std::string (UTF-8 encoding)
     std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
     return converter.to_bytes(libTag);
-}
-
-// Passes results and exceptions to Result Log
-ResultLog Executor::packageResults() {
-    return ResultLog(result, errorMessage, testID, getStringLibTag());
 }

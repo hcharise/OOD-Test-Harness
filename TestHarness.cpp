@@ -2,6 +2,7 @@
 #include <iostream>
 #include <thread>
 #include <algorithm>
+#include <iomanip>
 
 #include "ThreadPool.h"
 #include "TestHarness.h"
@@ -9,6 +10,7 @@
 #include "reciver.h"
 #include "Message.h"
 
+using std::setw;
 using std::vector;
 using std::thread;
 using std::cout;
@@ -40,16 +42,31 @@ void TestHarness::runAllTests() {
         for (int i = 0; i < Executor::numOfTests; i++) {
             std::string message;
             getMessage(message);
-            // std::cout << message << std::endl;
+
             try {
                 Message msg = Message::deserialize(message);
-                std::cout << "Received Message:\n"
-                      << "Source: " << msg.getSource() << "\n"
-                      << "Destination: " << msg.getDestination() << "\n"
-                      << "Type: " << msg.getType() << "\n"
-                      << "Author: " << msg.getAuthor() << "\n"
-                      << "Timestamp: " << msg.getTimeStamp() << "\n"
-                      << "Body: " << msg.getBody() << "\n";
+
+                bool passFail;
+                if (msg.getPassed() == "1") {
+                    passFail = true;
+                }
+                else {
+                    passFail = false;
+                }
+
+                const std::string author = msg.getAuthor();
+                const int testNum = std::stoi(msg.getTestID());
+                const int width = 13; // Width for printing results
+
+                // ResultLog myResults();
+                std::cout << "------- Test " << testNum << " Results -------\n"
+                    << setw(width) << "  Author: " << author << "\n"
+                    << setw(width) << "  Timestamp: " << msg.getTimeStamp() << "\n"
+                    << setw(width) << "  Passed: " << msg.getPassed() << "\n"
+                    << setw(width) << "  Error: " << msg.getErrorMessage() << "\n";
+
+                //ResultLog myResults(passFail, msg.getErrorMessage(), testNum, author);
+                //results.push_back(myResults);
             }
             catch (const std::exception& e) {
                 std::cout << "Error deserializing message: " << e.what() << "\n";
