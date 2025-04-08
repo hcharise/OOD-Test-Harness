@@ -2,9 +2,7 @@
 
 This multi-threaded, socket-based test harness is built to dynamically execute and log C++ unit tests from DLLs. Written by Hannah Ashton in collaboration with Aamani Suvarna, Katrina Luu, and David Jorgensen in December 2024 using Visual Studio for Syracuse's CSE 687 Object-Oriented Design course.
 
-![Screenshot 2025-04-08 102722](https://github.com/user-attachments/assets/0d6af96b-4809-4d0b-8d8f-77ab31832bd5)
-![Screenshot 2025-04-08 102743](https://github.com/user-attachments/assets/93b7701a-b66e-4e23-9b08-ca0facb0d310)
-
+![image](https://github.com/user-attachments/assets/29773a8a-a609-4009-825d-36e47163bae8)
 
 ## 🧩 Overview
 
@@ -60,3 +58,47 @@ This project implements a general-purpose test harness framework that executes C
 4. The **TestHarness**:
    - Deserializes messages
    - Logs output via `ResultLog`
+  
+## 🚀 Running the Harness
+
+### 1. 📥 Download the Code
+
+  Clone the repository using Git:
+
+```bash
+  git clone https://github.com/your-username/OOD-Test-Harness.git
+```
+
+  Or download it as a ZIP and extract it.
+
+### 2. 🧑‍💻 Open the Project in Visual Studio
+Open Visual Studio 2022 (or newer).
+Go to File → Open → Project/Solution.
+Select the .sln file in the root directory of the repository.
+Restore any NuGet packages if prompted.
+
+### 3. 🧩 Build and Set Up DLLs
+The Test Harness dynamically loads test cases defined in DLLs. You need to:
+  - Create your own DLLs that implement test functions
+  - Export test functions via a common interface (e.g., iTest)
+  - Declare test functions in a test declaration JSON file
+
+If you're new to DLLs in C++, follow this [official Microsoft tutorial](https://learn.microsoft.com/en-us/cpp/build/walkthrough-creating-and-using-a-dynamic-link-library-cpp?view=msvc-170) to learn how to create and use them.
+
+Once you've created the DLL:
+  - Build the DLL project in Visual Studio.
+  - Copy the resulting .dll file to the appropriate location specified in your test declaration JSON.
+  - Update your test declaration file with:
+     - DLL name
+     - Function name
+     - Parameters (if any)
+
+### 4. ▶️ Run the Harness
+Press F5 in Visual Studio or run the compiled executable from the command line.
+The harness will:
+  - Load the test declarations
+  - Load the specified DLLs
+  - Run all declared tests in parallel threads
+  - Log and display results in the console or output log
+
+📌 Make sure your DLLs are compiled in the same architecture (x64/x86) as the test harness project!
